@@ -1,0 +1,285 @@
+{
+  "started_at_utc": "2026-11-24T21:45:50.608469+00:00",
+  "config": {
+    "python": "3.13.12",
+    "platform": "Windows",
+    "packages": {
+      "sentence-transformers": "5.1.2",
+      "chromadb": "1.5.9",
+      "PyMuPDF": "1.27.2",
+      "torch": "2.8.0+cpu"
+    },
+    "embedding_model": "intfloat/multilingual-e5-small",
+    "embedding_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "ollama_model": "qwen2.5:7b",
+    "ollama_model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "rag_top_k": 4,
+    "rag_min_score": 0.75,
+    "chunk_words": 100,
+    "overlap_words": 20,
+    "index_documents": [
+      {
+        "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59",
+        "filename": "cuidados-com-fontes.txt",
+        "chunks": 3,
+        "pages": null
+      },
+      {
+        "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570",
+        "filename": "guia-do-laboratorio.txt",
+        "chunks": 3,
+        "pages": null
+      },
+      {
+        "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b",
+        "filename": "pln-e-embeddings.pdf",
+        "chunks": 4,
+        "pages": 2
+      },
+      {
+        "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7",
+        "filename": "pratica-de-rag.pdf",
+        "chunks": 4,
+        "pages": 2
+      }
+    ],
+    "rag_prompt_mode": "few-shot",
+    "retrieval_only": false,
+    "retrieval_k": [
+      1,
+      2,
+      4
+    ],
+    "index_setup_ms": 10261.26,
+    "cases_sha256": "430587edeb43c2b72b47964e43bba0dfd4f059235327b23d51c2511d6f80bec4",
+    "corpus_sha256": {
+      "cuidados-com-fontes.txt": "3ead5a1af0f786bc7d5543d7d391b436ef4c1e97b5fadb1b6c1f7af0fc87633b",
+      "guia-do-laboratorio.txt": "665e43fab2ecf8376c473de9f0a3c91fa42447038d8f430a54be68f0b9fab5b0",
+      "pln-e-embeddings.pdf": "a5d938222c13b97433a42d8e2c2dbf61b13793aabab36a1d89473df821f85293",
+      "pratica-de-rag.pdf": "ffe6453efdf0de1bd516b5b19e9f9bc5d1e322c0cf10685c457779f4bd14fb34"
+    }
+  },
+  "summary": {
+    "cases": 1,
+    "answerable": 1,
+    "unanswerable": 0,
+    "retrieval_mean": {
+      "precision_at_1": 0.0,
+      "evidence_recall_at_1": 0.0,
+      "document_hit_at_1": 1,
+      "source_recall_at_1": 1.0,
+      "precision_at_2": 0.5,
+      "evidence_recall_at_2": 1.0,
+      "document_hit_at_2": 1,
+      "source_recall_at_2": 1.0,
+      "precision_at_4": 0.25,
+      "evidence_recall_at_4": 1.0,
+      "document_hit_at_4": 1,
+      "source_recall_at_4": 1.0
+    },
+    "retrieval_latency_ms": {
+      "mean": 36.43,
+      "median": 36.43
+    },
+    "rag": {
+      "successful_calls": 1,
+      "failed_calls": 0,
+      "qualified_answerable_cases": 1,
+      "matches_all_concepts": 1,
+      "latency_ms": {
+        "mean": 44090.68,
+        "median": 44090.68
+      },
+      "cited_expected_source": 1,
+      "answered_with_all_concepts_and_expected_source": 1,
+      "correct_refusals": 0,
+      "correct_refusals_by_category": {
+        "near_unanswerable": {
+          "correct": 0,
+          "total": 0
+        },
+        "far_unanswerable": {
+          "correct": 0,
+          "total": 0
+        }
+      }
+    },
+    "baseline": {
+      "successful_calls": 1,
+      "failed_calls": 0,
+      "qualified_answerable_cases": 1,
+      "matches_all_concepts": 1,
+      "latency_ms": {
+        "mean": 10514.11,
+        "median": 10514.11
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "Q04",
+      "category": "answerable",
+      "question": "Que assunto o caderno usa para exemplificar a recuperação de uma paráfrase sobre consertar um carro?",
+      "expected_answer": "Manutenção de automóveis, equivalente à pergunta sobre reparar um veículo.",
+      "gold_evidence": [
+        {
+          "filename": "pln-e-embeddings.pdf",
+          "page": 1,
+          "anchor": "texto sobre manutenção de automóveis"
+        }
+      ],
+      "required_concepts": [
+        {
+          "label": "Manutenção ou reparo",
+          "any_of": [
+            "manutenção",
+            "repar",
+            "consert"
+          ]
+        },
+        {
+          "label": "Automóveis",
+          "any_of": [
+            "automóve",
+            "automóvel",
+            "veículo",
+            "carro"
+          ]
+        }
+      ],
+      "search_ms": 36.43,
+      "best_candidate_similarity": 0.8556907176971436,
+      "retrieved": [
+        {
+          "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+          "filename": "pln-e-embeddings.pdf",
+          "page": 1,
+          "position": 2,
+          "text": "mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores parecidos indicam afinidade segundo o modelo. Uma dúvida sobre como consertar um automóvel e um manual de como vender um automóvel ainda podem parecer próximos. Por isso, a recuperação oferece candidatos que precisam ser lidos no contexto da pergunta. No índice, os vetores apontam para os trechos de origem, que podem ser abertos para conferência. Lumifólio / Material didático de demonstração 1 / 2",
+          "score": 0.8556907176971436
+        },
+        {
+          "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:1",
+          "filename": "pln-e-embeddings.pdf",
+          "page": 1,
+          "position": 1,
+          "text": "CADERNO DE PLN Embeddings de texto Da linguagem natural aos vetores Representação Um embedding resume propriedades de um texto em um vetor numérico. O mesmo modelo representa a pergunta e os trechos em um espaço comum. Um modelo multilíngue permite comparar frases em idiomas diferentes, embora o resultado também dependa do acervo e da tarefa. Vocabulário A busca por palavras exatas pode perder relações de sentido. Por exemplo, “como reparar um veículo?” pode recuperar um texto sobre manutenção de automóveis, mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores",
+          "score": 0.8469064235687256
+        },
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:3",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 3,
+          "text": "observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou sem cobertura. A equipe compara os exemplos lado a lado antes de registrar a conclusão.",
+          "score": 0.8448935747146606
+        },
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 3,
+          "text": "uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e confira possíveis diferenças entre o título e o nome do arquivo.",
+          "score": 0.8340857028961182
+        }
+      ],
+      "retrieval_metrics": {
+        "precision_at_1": 0.0,
+        "evidence_recall_at_1": 0.0,
+        "document_hit_at_1": true,
+        "source_recall_at_1": 1.0,
+        "precision_at_2": 0.5,
+        "evidence_recall_at_2": 1.0,
+        "document_hit_at_2": true,
+        "source_recall_at_2": 1.0,
+        "precision_at_4": 0.25,
+        "evidence_recall_at_4": 1.0,
+        "document_hit_at_4": true,
+        "source_recall_at_4": 1.0
+      },
+      "generation_order": [
+        "rag",
+        "baseline"
+      ],
+      "rag": {
+        "elapsed_ms": 44090.68,
+        "output": {
+          "status": "answered",
+          "answer": "O caderno usa o assunto de consertar um carro para exemplificar a recuperação de uma paráfrase.",
+          "citations": [
+            {
+              "source_id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+              "filename": "pln-e-embeddings.pdf",
+              "page": 1,
+              "position": 2,
+              "quote": "Uma dúvida sobre como consertar um automóvel e um manual de como vender um automóvel ainda podem parecer próximos."
+            }
+          ],
+          "hits": [
+            {
+              "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+              "filename": "pln-e-embeddings.pdf",
+              "page": 1,
+              "position": 2,
+              "text": "mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores parecidos indicam afinidade segundo o modelo. Uma dúvida sobre como consertar um automóvel e um manual de como vender um automóvel ainda podem parecer próximos. Por isso, a recuperação oferece candidatos que precisam ser lidos no contexto da pergunta. No índice, os vetores apontam para os trechos de origem, que podem ser abertos para conferência. Lumifólio / Material didático de demonstração 1 / 2",
+              "score": 0.8556907176971436
+            },
+            {
+              "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:1",
+              "filename": "pln-e-embeddings.pdf",
+              "page": 1,
+              "position": 1,
+              "text": "CADERNO DE PLN Embeddings de texto Da linguagem natural aos vetores Representação Um embedding resume propriedades de um texto em um vetor numérico. O mesmo modelo representa a pergunta e os trechos em um espaço comum. Um modelo multilíngue permite comparar frases em idiomas diferentes, embora o resultado também dependa do acervo e da tarefa. Vocabulário A busca por palavras exatas pode perder relações de sentido. Por exemplo, “como reparar um veículo?” pode recuperar um texto sobre manutenção de automóveis, mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores",
+              "score": 0.8469064235687256
+            },
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:3",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 3,
+              "text": "observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou sem cobertura. A equipe compara os exemplos lado a lado antes de registrar a conclusão.",
+              "score": 0.8448935747146606
+            },
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 3,
+              "text": "uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e confira possíveis diferenças entre o título e o nome do arquivo.",
+              "score": 0.8340857028961182
+            }
+          ],
+          "submitted_ids": [
+            "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+            "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:1",
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:3",
+            "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3"
+          ],
+          "model": "qwen2.5:7b",
+          "mode": "few-shot"
+        },
+        "quality": {
+          "concepts": {
+            "Manutenção ou reparo": true,
+            "Automóveis": true
+          },
+          "all_concepts_matched": true,
+          "has_expected_source": true,
+          "all_citations_expected": true,
+          "quotes_covering_gold_anchor": 0
+        }
+      },
+      "baseline": {
+        "elapsed_ms": 10514.11,
+        "output": "O assunto do caderno para exemplificar a recuperação de uma paráfrase sobre consertar um carro pode ser a revisão e reformulação de textos, focando na precisão e na clareza da comunicação.",
+        "quality": {
+          "concepts": {
+            "Manutenção ou reparo": true,
+            "Automóveis": true
+          },
+          "all_concepts_matched": true
+        }
+      }
+    }
+  ]
+}

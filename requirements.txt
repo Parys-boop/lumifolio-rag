@@ -1,0 +1,13 @@
+# Instale primeiro o wheel CPU do PyTorch conforme o README.
+torch==2.8.0
+sentence-transformers==5.1.2
+transformers==4.57.1
+huggingface-hub==0.36.0
+chromadb==1.5.9
+PyMuPDF==1.27.2
+fastapi==0.135.2
+uvicorn==0.42.0
+python-multipart==0.0.30
+httpx==0.28.1
+pydantic==2.12.5
+pydantic-settings==2.13.1

@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guia do Projeto – AV_FINAL – Desenvolvimento de Solução com IA</title>
+  <style>
+    :root {
+      --ambar: #d97706;
+      --ambar-escuro: #92400e;
+      --ambar-claro: #fef3c7;
+      --verde: #157347;
+      --verde-claro: #eaf5ee;
+      --azul: #0b4f8a;
+      --azul-claro: #e8f1fa;
+      --vermelho: #b02a37;
+      --vermelho-claro: #fdecee;
+      --roxo: #6d28d9;
+      --roxo-claro: #ede9fe;
+      --cinza: #f5f7fa;
+      --borda: #d8dee7;
+      --texto: #222;
+      --branco: #fff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--texto);
+      background: #eef2f7;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--ambar), var(--ambar-escuro));
+      color: var(--branco);
+      padding: 32px 20px;
+      text-align: center;
+    }
+
+    header h1 { margin: 0 0 8px; font-size: 2rem; }
+    header p { margin: 4px 0; font-size: 1.05rem; }
+
+    .container {
+      width: min(1050px, calc(100% - 24px));
+      margin: 24px auto;
+    }
+
+    nav.menu {
+      background: var(--branco);
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 24px;
+      text-align: center;
+      position: sticky;
+      top: 8px;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    nav.menu a {
+      display: inline-block;
+      margin: 4px 5px;
+      padding: 7px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--ambar-escuro);
+      font-weight: bold;
+      font-size: 0.82rem;
+      border: 1px solid var(--ambar);
+    }
+
+    nav.menu a:hover {
+      background: var(--ambar);
+      color: var(--branco);
+    }
+
+    section.bloco {
+      background: var(--branco);
+      border: 1px solid var(--borda);
+      border-radius: 16px;
+      padding: 26px;
+      margin-bottom: 26px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      color: var(--ambar-escuro);
+      margin-top: 0;
+      border-bottom: 3px solid var(--ambar-claro);
+      padding-bottom: 8px;
+      font-size: 1.4rem;
+    }
+
+    h3 { color: var(--ambar-escuro); margin-bottom: 8px; font-size: 1.15rem; }
+    h4 { margin-bottom: 6px; color: var(--azul); }
+
+    .destaque {
+      background: var(--ambar-claro);
+      border-left: 6px solid var(--ambar);
+      padding: 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    .destaque-verde {
+      background: var(--verde-claro);
+      border-left: 6px solid var(--verde);
+      padding: 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    .destaque-azul {
+      background: var(--azul-claro);
+      border-left: 6px solid var(--azul);
+      padding: 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    .destaque-vermelho {
+      background: var(--vermelho-claro);
+      border-left: 6px solid var(--vermelho);
+      padding: 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    .destaque-roxo {
+      background: var(--roxo-claro);
+      border-left: 6px solid var(--roxo);
+      padding: 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    .card {
+      background: var(--cinza);
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 18px;
+      margin: 16px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: var(--branco);
+    }
+
+    th, td {
+      border: 1px solid var(--borda);
+      padding: 11px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--ambar-claro);
+      color: var(--ambar-escuro);
+    }
+
+    ul, ol { margin-top: 8px; }
+    li { margin-bottom: 6px; }
+
+    .requisito {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin: 14px 0;
+      padding: 14px;
+      background: var(--cinza);
+      border-radius: 10px;
+      border-left: 5px solid var(--ambar);
+    }
+
+    .requisito-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .tema-card {
+      background: var(--branco);
+      border: 2px solid var(--ambar-claro);
+      border-radius: 12px;
+      padding: 18px;
+      margin: 14px 0;
+      transition: border-color 0.2s;
+    }
+
+    .tema-card:hover {
+      border-color: var(--ambar);
+    }
+
+    .tema-card h4 {
+      color: var(--ambar-escuro);
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+
+    .dificuldade {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .dificuldade-facil { background: var(--verde-claro); color: var(--verde); }
+    .dificuldade-media { background: var(--ambar-claro); color: var(--ambar-escuro); }
+    .dificuldade-dificil { background: var(--vermelho-claro); color: var(--vermelho); }
+
+    .timeline-item {
+      display: flex;
+      gap: 14px;
+      margin: 12px 0;
+      padding: 12px;
+      background: var(--cinza);
+      border-radius: 10px;
+      border-left: 4px solid var(--ambar);
+    }
+
+    .timeline-item .tempo {
+      font-weight: bold;
+      color: var(--ambar-escuro);
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+
+    .arquitetura {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+      padding: 18px;
+      background: var(--ambar-claro);
+      border-radius: 12px;
+    }
+
+    .arquitetura-box {
+      background: var(--branco);
+      border: 2px solid var(--ambar);
+      border-radius: 10px;
+      padding: 12px 16px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 0.85rem;
+    }
+
+    .arquitetura-seta {
+      font-size: 1.4rem;
+      color: var(--ambar);
+    }
+
+    .faq-item {
+      margin: 16px 0;
+      padding: 14px;
+      background: var(--cinza);
+      border-radius: 10px;
+    }
+
+    .faq-item h4 {
+      margin-top: 0;
+      color: var(--ambar-escuro);
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .print-note { display: none; }
+
+    @media print {
+      body { background: white; }
+      header {
+        background: white;
+        color: black;
+        padding: 0 0 12px;
+        border-bottom: 3px solid #000;
+      }
+      nav.menu, footer { display: none; }
+      section.bloco {
+        box-shadow: none;
+        border: 0;
+        padding: 0;
+        page-break-inside: avoid;
+      }
+      .print-note {
+        display: block;
+        font-style: italic;
+        margin-bottom: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🏆 Guia do Projeto – AV_FINAL</h1>
+    <p><strong>Desenvolvimento de Solução com Inteligência Artificial</strong></p>
+    <p>Inteligência Artificial e Aprendizagem de Máquina</p>
+    <p>Aula Dupla 28 | Trabalho em Equipe | Apresentação + Relatório Técnico</p>
+  </header>
+
+  <div class="container">
+
+    <nav class="menu">
+      <a href="#visao">Visão Geral</a>
+      <a href="#entregaveis">Entregáveis</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#requisitos">Requisitos</a>
+      <a href="#temas">Temas</a>
+      <a href="#arquitetura">Arquitetura</a>
+      <a href="#relatorio">Relatório</a>
+      <a href="#apresentacao">Apresentação</a>
+      <a href="#avaliacao">Avaliação</a>
+      <a href="#cronograma">Cronograma</a>
+      <a href="#dicas">Dicas</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!-- VISÃO GERAL -->
+    <!-- ============================================================ -->
+    <section id="visao" class="bloco">
+      <p class="print-note">Guia do Projeto AV_FINAL – Material do Aluno.</p>
+      <h2>📋 Visão Geral</h2>
+
+      <div class="destaque">
+        A <strong>AV_FINAL</strong> é a avaliação prática mais importante do módulo de
+        PLN e IA Generativa. Nela, sua equipe vai <strong>desenvolver, documentar
+        e apresentar</strong> uma solução funcional que utilize Processamento de
+        Linguagem Natural (PLN), Inteligência Artificial Generativa ou Large
+        Language Models (LLMs).
+      </div>
+
+      <h3>Resumo rápido</h3>
+      <table>
+        <tr><th>Aspecto</th><th>Detalhe</th></tr>
+        <tr><td><strong>O quê?</strong></td><td>Desenvolver uma solução funcional com PLN / IA Generativa / LLMs</td></tr>
+        <tr><td><strong>Quem?</strong></td><td>Equipes de 2 a 3 alunos</td></tr>
+        <tr><td><strong>Entrega 1:</strong></td><td>Relatório técnico (8 a 12 páginas, PDF)</td></tr>
+        <tr><td><strong>Entrega 2:</strong></td><td>Código funcional (Colab ou GitHub)</td></tr>
+        <tr><td><strong>Entrega 3:</strong></td><td>Apresentação com demonstração ao vivo (15 min)</td></tr>
+        <tr><td><strong>Valor:</strong></td><td>10,0 pontos</td></tr>
+        <tr><td><strong>Data:</strong></td><td>02/12/2026</td></tr>
+      </table>
+
+      <h3>O que se espera de vocês</h3>
+      <div class="card">
+        <ul>
+          <li>Aplicar <strong>na prática</strong> os conceitos das Aulas 23 a 27.</li>
+          <li>Resolver um <strong>problema real</strong> (ou simular um contexto real).</li>
+          <li>Demonstrar <strong>domínio técnico</strong> e <strong>pensamento crítico</strong>.</li>
+          <li>Comunicar a solução de forma <strong>clara e profissional</strong>.</li>
+          <li>Documentar tudo em um <strong>relatório técnico</strong> completo.</li>
+        </ul>
+      </div>
+
+      <div class="destaque-verde">
+        <strong>💡 Conexão com o mercado:</strong> as habilidades que vocês vão demonstrar
+        na AV3 — construir sistemas RAG, integrar LLMs, aplicar engenharia de prompts —
+        são exatamente as competências mais demandadas no mercado de IA em 2025/2026.
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ENTREGÁVEIS -->
+    <!-- ============================================================ -->
+    <section id="entregaveis" class="bloco">
+      <h2>📦 Entregáveis</h2>
+      <p>Sua equipe deve entregar <strong>3 itens obrigatórios</strong>:</p>
+
+      <div class="requisito">
+        <span class="requisito-icon">📄</span>
+        <div>
+          <strong>1. Relatório Técnico (PDF, 8 a 12 páginas)</strong><br />
+          Documento que descreve o problema, a solução, a arquitetura, os resultados
+          e as limitações. Deve seguir a estrutura definida na seção
+          <a href="#relatorio">Relatório Técnico</a>.<br />
+          <em>Prazo: até o início da aula da AV3.</em>
+        </div>
+      </div>
+
+      <div class="requisito">
+        <span class="requisito-icon">💻</span>
+        <div>
+          <strong>2. Código Funcional (Colab ou GitHub)</strong><br />
+          Código completo que roda sem erros, com comentários explicativos.
+          Deve ser entregue como link do Google Colab ou repositório GitHub.<br />
+          <em>Prazo: até o início da aula da AV3.</em>
+        </div>
+      </div>
+
+      <div class="requisito">
+        <span class="requisito-icon">🎤</span>
+        <div>
+          <strong>3. Apresentação com Demonstração ao Vivo (15 min)</strong><br />
+          Apresentação da solução para a turma e o professor, incluindo
+          demonstração funcional do código. Seguida de 5 minutos de perguntas.<br />
+          <em>Data: aula da AV3 (Aula Dupla 28).</em>
+        </div>
+      </div>
+
+      <div class="destaque-vermelho">
+        <strong>⚠️ Importante:</strong> os três itens são obrigatórios.
+        A ausência de qualquer um deles resultará em desconto proporcional na nota.
+        O relatório e o código devem ser entregues <strong>antes</strong> do início
+        da aula de apresentações.
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- EQUIPE -->
+    <!-- ============================================================ -->
+    <section id="equipe" class="bloco">
+      <h2>👥 Formação das Equipes</h2>
+
+      <table>
+        <tr><th>Aspecto</th><th>Regra</th></tr>
+        <tr>
+          <td><strong>Tamanho</strong></td>
+          <td>Mínimo 2, máximo 4 alunos</td>
+        </tr>
+        <tr>
+          <td><strong>Formação</strong></td>
+          <td>Definida pelos próprios alunos (até 1 semana antes da AV3)</td>
+        </tr>
+        <tr>
+          <td><strong>Divisão de trabalho</strong></td>
+          <td>Todos os membros devem participar ativamente e da apresentação</td>
+        </tr>
+        <tr>
+          <td><strong>Individual</strong></td>
+          <td>Não é permitido realizar o projeto individualmente</td>
+        </tr>
+      </table>
+
+      <div class="destaque-azul">
+        <strong>Dica:</strong> formem equipes com perfis complementares. Por exemplo:
+        um membro mais forte em código, outro em documentação, outro em apresentação.
+        Isso equilibra o trabalho e melhora o resultado final.
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- REQUISITOS -->
+    <!-- ============================================================ -->
+    <section id="requisitos" class="bloco">
+      <h2>✅ Requisitos Obrigatórios</h2>
+      <p>A solução da sua equipe <strong>deve obrigatoriamente</strong> atender a todos
+      os requisitos abaixo:</p>
+
+      <div class="requisito">
+        <span class="requisito-icon">1️⃣</span>
+        <div>
+          <strong>Uso de pelo menos uma técnica de PLN / NLP</strong><br />
+          Exemplos: tokenização, embeddings, análise de sentimentos, classificação
+          de texto, extração de entidades (NER), summarização, tradução.
+        </div>
+      </div>
+
+      <div class="requisito">
+        <span class="requisito-icon">2️⃣</span>
+        <div>
+          <strong>Integração com LLM ou modelo de linguagem</strong><br />
+          Exemplos: API Gemini, API OpenAI, modelo local (Ollama), modelos
+          pré-treinados do Hugging Face, sentence-transformers.
+        </div>
+      </div>
+
+      <div class="requisito">
+        <span class="requisito-icon">3️⃣</span>
+        <div>
+          <strong>Aplicação de Engenharia de Prompts</strong><br />
+          A solução deve demonstrar uso consciente de técnicas de prompting:
+          zero-shot, few-shot, chain-of-thought, personas, formatação de saída.
+        </div>
+      </div>
+
+      <div class="requisito">
+        <span class="requisito-icon">4️⃣</span>
+        <div>
+          <strong>Código funcional e documentado</strong><br />
+          O código deve rodar sem erros e ter comentários explicativos.
+          Aceita-se Google Colab ou repositório GitHub.
+        </div>
+      </div>
+
+      <div class="requisito">
+        <span class="requisito-icon">5️⃣</span>
+        <div>
+          <strong>Demonstração ao vivo</strong><br />
+          A equipe deve demonstrar a solução funcionando durante a apresentação.
+          Tenham um plano B (vídeo ou screenshots) caso a API falhe.
+        </div>
+      </div>
+
+      <div class="requisito">
+        <span class="requisito-icon">6️⃣</span>
+        <div>
+          <strong>Relatório técnico completo</strong><br />
+          Documento de 8 a 12 páginas seguindo a estrutura obrigatória.
+        </div>
+      </div>
+
+      <h3>O que NÃO é obrigatório (mas agrega valor)</h3>
+      <ul>
+        <li>Interface gráfica (Streamlit, Gradio) — mas impressiona na apresentação.</li>
+        <li>Uso de múltiplas técnicas combinadas (ex.: RAG + análise de sentimentos).</li>
+        <li>Avaliação quantitativa com métricas (Precision@k, acurácia, etc.).</li>
+        <li>Deploy em plataforma cloud (Hugging Face Spaces, Render).</li>
+        <li>Comparação entre diferentes abordagens ou modelos.</li>
+      </ul>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- TEMAS SUGERIDOS -->
+    <!-- ============================================================ -->
+    <section id="temas" class="bloco">
+      <h2>💡 Temas Sugeridos</h2>
+      <p>Vocês podem escolher um dos temas abaixo ou propor um tema próprio
+      (com aprovação do professor com pelo menos <strong>1 semana de antecedência</strong>).</p>
+
+      <div class="tema-card">
+        <h4>🤖 Tema 1: Chatbot com RAG para Domínio Específico</h4>
+        <p>Construa um chatbot que responde perguntas sobre um conjunto específico
+        de documentos (políticas de RH, manual de produto, FAQ de serviço,
+        conteúdo de uma disciplina, legislação, etc.).</p>
+        <p><strong>Técnicas:</strong> Embeddings, ChromaDB/FAISS, RAG, LLM, Engenharia de Prompts.</p>
+        <p><strong>Exemplo prático:</strong> chatbot que responde dúvidas sobre o regulamento
+        do curso, ou sobre as políticas de uma empresa fictícia.</p>
+        <span class="dificuldade dificuldade-media">Dificuldade: Média</span>
+      </div>
+
+      <div class="tema-card">
+        <h4>📊 Tema 2: Sistema de Análise de Sentimentos com LLM</h4>
+        <p>Crie um sistema que analise sentimentos em textos (reviews, tweets,
+        comentários, avaliações de produtos) usando LLMs e compare com
+        abordagens clássicas de PLN.</p>
+        <p><strong>Técnicas:</strong> PLN, classificação de texto, LLM, few-shot prompting, formatação JSON.</p>
+        <p><strong>Exemplo prático:</strong> analisar avaliações de produtos em um e-commerce
+        e gerar relatório de satisfação.</p>
+        <span class="dificuldade dificuldade-media">Dificuldade: Média</span>
+      </div>
+
+      <div class="tema-card">
+        <h4>📝 Tema 3: Pipeline de Extração de Informação</h4>
+        <p>Desenvolva um pipeline que extraia informações estruturadas de textos
+        não estruturados (currículos, notícias, contratos, e-mails).</p>
+        <p><strong>Técnicas:</strong> NER, LLM, formatação JSON, engenharia de prompts, few-shot.</p>
+        <p><strong>Exemplo prático:</strong> extrair nome, formação e experiência de currículos
+        em texto livre e gerar um JSON estruturado.</p>
+        <span class="dificuldade dificuldade-facil">Dificuldade: Fácil</span>
+      </div>
+
+      <div class="tema-card">
+        <h4>🔍 Tema 4: Busca Semântica Inteligente</h4>
+        <p>Construa um sistema de busca semântica sobre um acervo de documentos
+        (artigos, notícias, documentos internos) com reranking opcional.</p>
+        <p><strong>Técnicas:</strong> Embeddings, Vector Database, chunking, busca semântica, métricas de avaliação.</p>
+        <p><strong>Exemplo prático:</strong> buscar em notícias de tecnologia usando linguagem
+        natural, sem depender de palavras-chave exatas.</p>
+        <span class="dificuldade dificuldade-media">Dificuldade: Média</span>
+      </div>
+
+      <div class="tema-card">
+        <h4>🎨 Tema 5: Aplicação com IA Generativa</h4>
+        <p>Crie uma aplicação que use IA generativa para summarização, tradução,
+        reescrita, geração de conteúdo ou transformação de texto.</p>
+        <p><strong>Técnicas:</strong> LLM, engenharia de prompts, personas, formatação de saída, templates.</p>
+        <p><strong>Exemplo prático:</strong> ferramenta que resume artigos acadêmicos
+        em linguagem acessível para diferentes públicos.</p>
+        <span class="dificuldade dificuldade-facil">Dificuldade: Fácil</span>
+      </div>
+
+      <div class="tema-card">
+        <h4>📚 Tema 6: Assistente de Estudos com RAG</h4>
+        <p>Construa um assistente que responda perguntas sobre o material de uma
+        disciplina específica, usando os slides e textos da aula como base.</p>
+        <p><strong>Técnicas:</strong> RAG, chunking, embeddings, LLM, system prompts, memória de conversa.</p>
+        <p><strong>Exemplo prático:</strong> chatbot que responde dúvidas sobre a disciplina
+        IIA012 usando o plano de ensino e materiais das aulas.</p>
+        <span class="dificuldade dificuldade-media">Dificuldade: Média</span>
+      </div>
+
+      <div class="tema-card">
+        <h4>🎯 Tema 7: Tema Livre (com aprovação)</h4>
+        <p>Proponha um tema próprio que utilize PLN, IA Generativa ou LLMs.
+        O tema deve ser aprovado pelo professor com pelo menos 1 semana de antecedência.</p>
+        <p><strong>Requisito:</strong> deve incluir pelo menos uma técnica de PLN/NLP
+        e integração com LLM ou modelo de linguagem.</p>
+        <span class="dificuldade dificuldade-dificil">Dificuldade: Variável</span>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ARQUITETURA DE REFERÊNCIA -->
+    <!-- ============================================================ -->
+    <section id="arquitetura" class="bloco">
+      <h2>🏗️ Arquitetura de Referência (para projetos RAG)</h2>
+      <p>Se vocês escolherem um tema que envolva RAG (Temas 1, 4 ou 6),
+      a arquitetura de referência é a que construímos nas Aulas 24 e 25:</p>
+
+      <div class="arquitetura">
+        <div class="arquitetura-box">📄 Documentos</div>
+        <div class="arquitetura-seta">→</div>
+        <div class="arquitetura-box">✂️ Chunking</div>
+        <div class="arquitetura-seta">→</div>
+        <div class="arquitetura-box">🔢 Embeddings</div>
+        <div class="arquitetura-seta">→</div>
+        <div class="arquitetura-box">🗄️ Vector DB</div>
+      </div>
+      <div class="arquitetura">
+        <div class="arquitetura-box">❓ Pergunta</div>
+        <div class="arquitetura-seta">→</div>
+        <div class="arquitetura-box">🔎 Retrieval</div>
+        <div class="arquitetura-seta">→</div>
+        <div class="arquitetura-box">📝 Prompt + Contexto</div>
+        <div class="arquitetura-seta">→</div>
+        <div class="arquitetura-box">🤖 LLM</div>
+        <div class="arquitetura-seta">→</div>
+        <div class="arquitetura-box">💬 Resposta</div>
+      </div>
+
+      <h3>Tecnologias que vocês já conhecem</h3>
+      <table>
+        <tr><th>Componente</th><th>Tecnologia aprendida</th><th>Aula</th></tr>
+        <tr><td>Embeddings</td><td>sentence-transformers</td><td>Aula 23</td></tr>
+        <tr><td>Vector Database</td><td>ChromaDB</td><td>Aula 24</td></tr>
+        <tr><td>Chunking</td><td>Funções Python (por parágrafo, tamanho, overlap)</td><td>Aula 24</td></tr>
+        <tr><td>LLM</td><td>API Gemini (gratuita)</td><td>Aula 26</td></tr>
+        <tr><td>Engenharia de Prompts</td><td>Personas, CoT, Few-shot, JSON</td><td>Aula 27</td></tr>
+        <tr><td>Busca Semântica</td><td>cosine_similarity, np.argsort</td><td>Aula 24</td></tr>
+      </table>
+
+      <div class="destaque-verde">
+        <strong>💡 Dica:</strong> vocês não precisam reinventar a roda. Reutilizem os
+        códigos das Aulas 23 a 27 como base e adaptem para o problema específico
+        do projeto de vocês. O diferencial estará na aplicação e na personalização.
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- RELATÓRIO TÉCNICO -->
+    <!-- ============================================================ -->
+    <section id="relatorio" class="bloco">
+      <h2>📄 Estrutura do Relatório Técnico</h2>
+      <p>O relatório deve ter <strong>8 a 12 páginas</strong>, em formato PDF,
+      fonte Arial ou Times New Roman 12, espaçamento 1,5.</p>
+
+      <table>
+        <tr><th>#</th><th>Seção</th><th>Conteúdo esperado</th><th>Págs.</th></tr>
+        <tr>
+          <td>1</td>
+          <td><strong>Capa</strong></td>
+          <td>Instituição, curso, disciplina, título do projeto, nomes dos integrantes, professor, data</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>Resumo</strong></td>
+          <td>Parágrafo único (5-8 linhas) com problema, solução, técnicas e resultados</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>Introdução e Problema</strong></td>
+          <td>Qual problema resolve? Por que é importante? Quem é afetado?</td>
+          <td>1-2</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>Metodologia</strong></td>
+          <td>Técnicas utilizadas, ferramentas, bibliotecas, processo de desenvolvimento</td>
+          <td>2-3</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>Arquitetura da Solução</strong></td>
+          <td>Diagrama ou descrição do fluxo de dados, componentes do sistema</td>
+          <td>1-2</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><strong>Resultados</strong></td>
+          <td>Resultados obtidos, métricas, exemplos de saída, screenshots</td>
+          <td>1-2</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><strong>Limitações e Trabalhos Futuros</strong></td>
+          <td>O que não funciona bem, propostas de melhoria, reflexão ética</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><strong>Conclusão</strong></td>
+          <td>Síntese dos aprendizados, contribuição do projeto</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><strong>Referências</strong></td>
+          <td>Fontes consultadas (ABNT ou similar)</td>
+          <td>1</td>
+        </tr>
+      </table>
+
+      <div class="destaque">
+        <strong>Dica de formatação:</strong> usem o Template do Relatório Técnico
+        fornecido pelo professor como base. Ele já contém a estrutura completa
+        com campos para preencher.
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- APRESENTAÇÃO -->
+    <!-- ============================================================ -->
+    <section id="apresentacao" class="bloco">
+      <h2>🎤 Formato da Apresentação</h2>
+
+      <h3>Estrutura (15 minutos)</h3>
+      <div class="timeline-item">
+        <span class="tempo">0:00 – 2:00</span>
+        <span>Apresentação da equipe e do problema</span>
+      </div>
+      <div class="timeline-item">
+        <span class="tempo">2:00 – 5:00</span>
+        <span>Metodologia e técnicas utilizadas</span>
+      </div>
+      <div class="timeline-item">
+        <span class="tempo">5:00 – 10:00</span>
+        <span><strong>Demonstração ao vivo</strong> da solução (parte mais importante!)</span>
+      </div>
+      <div class="timeline-item">
+        <span class="tempo">10:00 – 13:00</span>
+        <span>Resultados e limitações</span>
+      </div>
+      <div class="timeline-item">
+        <span class="tempo">13:00 – 15:00</span>
+        <span>Conclusão e aprendizados</span>
+      </div>
+      <div class="timeline-item">
+        <span class="tempo">15:00 – 20:00</span>
+        <span>Perguntas do professor e da turma (arguição)</span>
+      </div>
+
+      <h3>Regras da apresentação</h3>
+      <ul>
+        <li><strong>Tempo máximo:</strong> 15 minutos. Ao final, o professor interromperá.</li>
+        <li><strong>Todos participam:</strong> cada membro deve falar pelo menos uma parte.</li>
+        <li><strong>Demonstração obrigatória:</strong> o código deve rodar ao vivo.</li>
+        <li><strong>Slides opcionais:</strong> podem usar slides, mas a demonstração é o foco.</li>
+        <li><strong>Plano B:</strong> tenham screenshots ou vídeo gravado caso a API falhe.</li>
+      </ul>
+
+      <div class="destaque-vermelho">
+        <strong>⚠️ Atenção:</strong> se a demonstração ao vivo falhar, a equipe deve
+        mostrar o plano B (vídeo ou screenshots) e explicar o que causou a falha.
+        A nota de demonstração será reduzida proporcionalmente.
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- AVALIAÇÃO -->
+    <!-- ============================================================ -->
+    <section id="avaliacao" class="bloco">
+      <h2>📊 Critérios de Avaliação</h2>
+
+      <table>
+        <tr><th>Critério</th><th>Peso</th><th>O que será avaliado</th></tr>
+        <tr>
+          <td><strong>Correção Técnica</strong></td>
+          <td>3,0</td>
+          <td>Código funcional, uso correto das técnicas, solução roda sem erros, demonstração ao vivo</td>
+        </tr>
+        <tr>
+          <td><strong>Criatividade e Originalidade</strong></td>
+          <td>1,5</td>
+          <td>Solução inovadora, tema relevante, abordagem diferenciada</td>
+        </tr>
+        <tr>
+          <td><strong>Qualidade da Documentação</strong></td>
+          <td>2,0</td>
+          <td>Relatório completo, claro, com diagrama de arquitetura e referências</td>
+        </tr>
+        <tr>
+          <td><strong>Apresentação</strong></td>
+          <td>2,0</td>
+          <td>Clareza, objetividade, domínio do conteúdo, respostas às perguntas</td>
+        </tr>
+        <tr>
+          <td><strong>Pensamento Crítico</strong></td>
+          <td>1,5</td>
+          <td>Identificação de limitações, propostas de melhoria, reflexão ética</td>
+        </tr>
+        <tr>
+          <td><strong>TOTAL</strong></td>
+          <td><strong>10,0</strong></td>
+          <td></td>
+        </tr>
+      </table>
+
+      <h3>Detalhamento: Correção Técnica (3,0 pontos)</h3>
+      <table>
+        <tr><th>Subcritério</th><th>Pontuação</th></tr>
+        <tr><td>Usa pelo menos uma técnica de PLN/NLP</td><td>0,5</td></tr>
+        <tr><td>Integração com LLM ou modelo de linguagem</td><td>0,5</td></tr>
+        <tr><td>Código roda sem erros</td><td>1,0</td></tr>
+        <tr><td>Código documentado e organizado</td><td>0,5</td></tr>
+        <tr><td>Demonstração ao vivo funcional</td><td>0,5</td></tr>
+      </table>
+
+      <div class="destaque-azul">
+        <strong>Avaliação por pares:</strong> além da nota do professor, as equipes
+        também serão avaliadas pelos colegas (avaliação por pares). Essa avaliação
+        pode contribuir com até 1 ponto adicional, a critério do professor.
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CRONOGRAMA -->
+    <!-- ============================================================ -->
+    <section id="cronograma" class="bloco">
+      <h2>📅 Cronograma do Projeto</h2>
+
+      <table>
+        <tr><th>Etapa</th><th>Prazo</th><th>Descrição</th></tr>
+        <tr>
+          <td><strong>Formação das equipes</strong></td>
+          <td>Até 2 semanas antes da AV3</td>
+          <td>Definir equipes de 2 a 4 alunos e informar ao professor</td>
+        </tr>
+        <tr>
+          <td><strong>Escolha do tema</strong></td>
+          <td>Até 2 semanas antes da AV3</td>
+          <td>Escolher um dos temas sugeridos ou propor tema livre</td>
+        </tr>
+        <tr>
+          <td><strong>Aprovação de tema livre</strong></td>
+          <td>Até 1 semana antes da AV3</td>
+          <td>Se optar por tema livre, obter aprovação do professor</td>
+        </tr>
+        <tr>
+          <td><strong>Desenvolvimento</strong></td>
+          <td>2 semanas (entre a Aula 27 e a AV3)</td>
+          <td>Codificar, testar, documentar e preparar apresentação</td>
+        </tr>
+        <tr>
+          <td><strong>Entrega do relatório + código</strong></td>
+          <td>Antes do início da aula da AV3</td>
+          <td>Enviar PDF do relatório e link do código</td>
+        </tr>
+        <tr>
+          <td><strong>Apresentação</strong></td>
+          <td>Aula da AV3 (Aula Dupla 28)</td>
+          <td>15 min de apresentação + 5 min de perguntas</td>
+        </tr>
+        <tr>
+          <td><strong>Divulgação das notas</strong></td>
+          <td>Até 3 dias úteis após a AV3</td>
+          <td>Notas publicadas na plataforma da disciplina</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- DICAS -->
+    <!-- ============================================================ -->
+    <section id="dicas" class="bloco">
+      <h2>💡 Dicas para uma Entrega de Sucesso</h2>
+
+      <h3>Antes da AV3</h3>
+      <ul>
+        <li><strong>Comecem cedo:</strong> não deixem para a última semana.</li>
+        <li><strong>Dividam tarefas:</strong> cada membro cuida de uma parte.</li>
+        <li><strong>Testem tudo várias vezes:</strong> garantam que o código roda sem erros.</li>
+        <li><strong>Preparem plano B:</strong> gravem um vídeo da demonstração como backup.</li>
+        <li><strong>Ensaiem a apresentação:</strong> cronometrem para não ultrapassar 15 min.</li>
+        <li><strong>Revisem o relatório:</strong> verifiquem se todas as seções estão completas.</li>
+      </ul>
+
+      <h3>Durante a apresentação</h3>
+      <ul>
+        <li><strong>Sejam objetivos:</strong> 15 minutos passam rápido.</li>
+        <li><strong>Demonstrem ao vivo:</strong> é o ponto mais importante.</li>
+        <li><strong>Expliquem as escolhas:</strong> por que usaram essa técnica e não outra?</li>
+        <li><strong>Sejam honestos sobre limitações:</strong> mostra maturidade técnica.</li>
+        <li><strong>Respondam com confiança:</strong> se não souberem, digam e proponham investigar.</li>
+      </ul>
+
+      <h3>Erros comuns a evitar</h3>
+      <ul>
+        <li>❌ Não testar o código antes da apresentação.</li>
+        <li>❌ Ultrapassar o tempo de 15 minutos.</li>
+        <li>❌ Relatório incompleto ou sem estrutura definida.</li>
+        <li>❌ Não explicar as escolhas técnicas.</li>
+        <li>❌ Ignorar limitações da solução.</li>
+        <li>❌ Apenas um membro apresentar.</li>
+        <li>❌ Copiar código da internet sem entender.</li>
+        <li>❌ Deixar a API key exposta no código público.</li>
+      </ul>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FAQ -->
+    <!-- ============================================================ -->
+    <section id="faq" class="bloco">
+      <h2>❓ Perguntas Frequentes</h2>
+
+      <div class="faq-item">
+        <h4>Posso usar qualquer LLM?</h4>
+        <p>Sim! Vocês podem usar Gemini (gratuito), OpenAI, Anthropic, modelos locais
+        (Ollama), ou modelos do Hugging Face. O importante é que haja integração
+        com um modelo de linguagem. Recomendamos o Gemini pela facilidade de acesso
+        e tier gratuito.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Preciso criar algo completamente novo?</h4>
+        <p>Não. Vocês podem adaptar exemplos das aulas anteriores, mas devem
+        personalizar para um problema específico e adicionar funcionalidades próprias.
+        A criatividade está na aplicação, não necessariamente na técnica.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Se a API falhar durante a apresentação?</h4>
+        <p>Tenham um plano B: screenshots, vídeo gravado, ou uma versão simplificada
+        que funcione offline. A preparação é parte da avaliação. Se a falha for
+        comprovadamente externa (ex.: queda de internet geral), o professor
+        considerará o plano B sem penalização.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Posso entregar o relatório depois do prazo?</h4>
+        <p>Não. O relatório deve ser entregue até o início da aula da AV3.
+        Atrasos terão desconto de 1 ponto por dia de atraso, até o limite de 3 dias.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Quantas pessoas por equipe?</h4>
+        <p>Mínimo 2, máximo 4 alunos. Todos devem participar da apresentação.
+        Não é permitido realizar o projeto individualmente.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Posso usar frameworks como LangChain ou LlamaIndex?</h4>
+        <p>Sim! Frameworks são bem-vindos e podem facilitar a implementação.
+        O importante é entender o que está acontecendo por baixo. Se usarem
+        um framework, expliquem no relatório o que ele faz internamente.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>O código precisa estar em Python?</h4>
+        <p>Preferencialmente sim, pois é a linguagem usada em toda a disciplina.
+        Porém, se a equipe tiver experiência com outra linguagem e justificar
+        a escolha, o professor pode autorizar.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Preciso de uma interface gráfica?</h4>
+        <p>Não é obrigatório, mas agrega valor na apresentação. Se quiserem,
+        podem usar Streamlit ou Gradio para criar uma interface simples.
+        O código no Colab já é suficiente para a demonstração.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>O que acontece se eu não participar da apresentação?</h4>
+        <p>Todos os membros devem participar. Se um membro não puder comparecer
+        por motivo justificado (atestado, etc.), a equipe deve informar ao professor
+        previamente. Caso contrário, a nota do membro ausente pode ser reduzida.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Posso usar dados reais (ex.: documentos da empresa onde trabalho)?</h4>
+        <p>Sim, desde que vocês tenham autorização para usar esses dados e que
+        não contenham informações sensíveis ou pessoais. Se houver dúvida,
+        consultem o professor. Alternativamente, criem documentos fictícios.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Como protejo minha API key no código?</h4>
+        <p>Nunca exponham a API key em repositórios públicos. Usem variáveis
+        de ambiente ou peçam para o professor avaliar o código localmente.
+        Se for Colab, podem usar uma célula com a key e apagá-la antes de compartilhar.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHECKLIST FINAL -->
+    <!-- ============================================================ -->
+    <section class="bloco">
+      <h2>✅ Checklist Final da Equipe</h2>
+      <p>Antes da entrega, verifiquem se todos os itens estão prontos:</p>
+
+      <table>
+        <tr><th>Item</th><th>Status</th></tr>
+        <tr><td>Equipe formada (2-4 membros)</td><td>☐</td></tr>
+        <tr><td>Tema escolhido e aprovado</td><td>☐</td></tr>
+        <tr><td>Solução usa pelo menos uma técnica de PLN/NLP</td><td>☐</td></tr>
+        <tr><td>Solução integra LLM ou modelo de linguagem</td><td>☐</td></tr>
+        <tr><td>Engenharia de Prompts aplicada</td><td>☐</td></tr>
+        <tr><td>Código roda sem erros</td><td>☐</td></tr>
+        <tr><td>Código documentado com comentários</td><td>☐</td></tr>
+        <tr><td>Relatório técnico completo (8-12 páginas)</td><td>☐</td></tr>
+        <tr><td>Relatório em PDF</td><td>☐</td></tr>
+        <tr><td>Demonstração testada várias vezes</td><td>☐</td></tr>
+        <tr><td>Plano B preparado (vídeo ou screenshots)</td><td>☐</td></tr>
+        <tr><td>Apresentação ensaiada (cronometrada ≤ 15 min)</td><td>☐</td></tr>
+        <tr><td>Todos os membros sabem suas partes</td><td>☐</td></tr>
+        <tr><td>API key não exposta publicamente</td><td>☐</td></tr>
+        <tr><td>Entrega realizada dentro do prazo</td><td>☐</td></tr>
+      </table>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CONTATO E SUPORTE -->
+    <!-- ============================================================ -->
+    <section class="bloco">
+      <h2>📬 Suporte</h2>
+      <div class="card">
+        <p>Dúvidas sobre o projeto? Procurem o professor:</p>
+        <ul>
+          <li><strong>Durante as aulas:</strong> tragam dúvidas específicas sobre implementação.</li>
+          <li><strong>Por e-mail/plataforma:</strong> enviem perguntas com antecedência mínima de 48h.</li>
+          <li><strong>Horário de atendimento:</strong> conforme combinado com a turma.</li>
+        </ul>
+        <p><strong>Dica:</strong> quanto mais específica a dúvida, mais rápida e útil será a resposta.
+        Em vez de "não consigo fazer funcionar", digam "o erro X aparece na linha Y quando faço Z".</p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    Guia do Projeto – AV3: Desenvolvimento de Solução com IA<br />
+    Inteligência Artificial e Aprendizagem de Máquina<br />
+    <em>Boa sorte e bom trabalho! 🚀</em>
+  </footer>
+
+</body>
+</html>

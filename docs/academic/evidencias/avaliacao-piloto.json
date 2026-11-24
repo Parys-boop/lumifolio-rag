@@ -1,0 +1,1794 @@
+{
+  "started_at_utc": "2026-11-24T21:36:53.088204+00:00",
+  "config": {
+    "python": "3.13.12",
+    "platform": "Windows",
+    "packages": {
+      "sentence-transformers": "5.1.2",
+      "chromadb": "1.5.9",
+      "PyMuPDF": "1.27.2",
+      "torch": "2.8.0+cpu"
+    },
+    "embedding_model": "intfloat/multilingual-e5-small",
+    "embedding_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "ollama_model": "qwen2.5:3b",
+    "ollama_model_digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+    "rag_top_k": 4,
+    "rag_min_score": 0.75,
+    "chunk_words": 100,
+    "overlap_words": 20,
+    "index_documents": [
+      {
+        "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59",
+        "filename": "cuidados-com-fontes.txt",
+        "chunks": 3,
+        "pages": null
+      },
+      {
+        "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570",
+        "filename": "guia-do-laboratorio.txt",
+        "chunks": 3,
+        "pages": null
+      },
+      {
+        "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b",
+        "filename": "pln-e-embeddings.pdf",
+        "chunks": 4,
+        "pages": 2
+      },
+      {
+        "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7",
+        "filename": "pratica-de-rag.pdf",
+        "chunks": 4,
+        "pages": 2
+      }
+    ],
+    "rag_prompt_mode": "few-shot",
+    "retrieval_only": false,
+    "retrieval_k": [
+      1,
+      2,
+      4
+    ],
+    "index_setup_ms": 27040.75,
+    "cases_sha256": "430587edeb43c2b72b47964e43bba0dfd4f059235327b23d51c2511d6f80bec4",
+    "corpus_sha256": {
+      "cuidados-com-fontes.txt": "3ead5a1af0f786bc7d5543d7d391b436ef4c1e97b5fadb1b6c1f7af0fc87633b",
+      "guia-do-laboratorio.txt": "665e43fab2ecf8376c473de9f0a3c91fa42447038d8f430a54be68f0b9fab5b0",
+      "pln-e-embeddings.pdf": "a5d938222c13b97433a42d8e2c2dbf61b13793aabab36a1d89473df821f85293",
+      "pratica-de-rag.pdf": "ffe6453efdf0de1bd516b5b19e9f9bc5d1e322c0cf10685c457779f4bd14fb34"
+    }
+  },
+  "summary": {
+    "cases": 12,
+    "answerable": 8,
+    "unanswerable": 4,
+    "retrieval_mean": {
+      "precision_at_1": 0.625,
+      "evidence_recall_at_1": 0.625,
+      "document_hit_at_1": 1,
+      "source_recall_at_1": 0.875,
+      "precision_at_2": 0.5,
+      "evidence_recall_at_2": 0.875,
+      "document_hit_at_2": 1,
+      "source_recall_at_2": 1.0,
+      "precision_at_4": 0.3125,
+      "evidence_recall_at_4": 1.0,
+      "document_hit_at_4": 1,
+      "source_recall_at_4": 1.0
+    },
+    "retrieval_latency_ms": {
+      "mean": 32.63,
+      "median": 32.33
+    },
+    "rag": {
+      "successful_calls": 12,
+      "failed_calls": 0,
+      "qualified_answerable_cases": 8,
+      "matches_all_concepts": 4,
+      "latency_ms": {
+        "mean": 11532.22,
+        "median": 11247.27
+      },
+      "cited_expected_source": 5,
+      "answered_with_all_concepts_and_expected_source": 4,
+      "correct_refusals": 4,
+      "correct_refusals_by_category": {
+        "near_unanswerable": {
+          "correct": 2,
+          "total": 2
+        },
+        "far_unanswerable": {
+          "correct": 2,
+          "total": 2
+        }
+      }
+    },
+    "baseline": {
+      "successful_calls": 12,
+      "failed_calls": 0,
+      "qualified_answerable_cases": 8,
+      "matches_all_concepts": 3,
+      "latency_ms": {
+        "mean": 5894.42,
+        "median": 5078.44
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "Q01",
+      "category": "answerable",
+      "question": "Qual código identifica a entrega do laboratório fictício?",
+      "expected_answer": "O código da entrega é VETOR-17.",
+      "gold_evidence": [
+        {
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "anchor": "é VETOR-17"
+        }
+      ],
+      "required_concepts": [
+        {
+          "label": "Código exato da entrega",
+          "any_of": [
+            "VETOR-17"
+          ]
+        }
+      ],
+      "search_ms": 29.71,
+      "best_candidate_similarity": 0.9134799242019653,
+      "retrieved": [
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 1,
+          "text": "Guia do laboratório fictício de recuperação semântica Entrega da prática O código que identifica a entrega do laboratório fictício é VETOR-17. Anote esse código no campo de identificação do exercício para vincular os resultados à mesma rodada. A atividade usa uma coleção pequena de anotações didáticas e registra a pergunta junto com o trecho recuperado. Os identificadores e procedimentos deste guia pertencem apenas ao cenário fictício da demonstração. Conferência experimental Antes de alterar o índice, salve a versão das anotações que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui",
+          "score": 0.9134799242019653
+        },
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 2,
+          "text": "que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui a pergunta original, o nome do documento consultado e um comentário da pessoa que conferiu a evidência. Cada revisão deve acontecer antes de combinar observações de diferentes rodadas. Entrega da análise Cada equipe registra três hipóteses de erro na seção de análise do laboratório. Uma hipótese é uma explicação plausível para o comportamento do sistema, a ser apoiada por exemplos observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou",
+          "score": 0.8357831835746765
+        },
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:1",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 1,
+          "text": "Cuidados com fontes em um assistente de estudos Seleção de material Antes de importar um documento real, confira se existe autorização para utilizá-lo. Em trabalhos acadêmicos, prefira documentos públicos ou escritos pela própria equipe. Materiais que contenham dados pessoais, conteúdo confidencial ou informações restritas podem ser substituídos por exemplos fictícios. O aluno deve respeitar as regras da fonte e da instituição ao compartilhar qualquer resultado. Dados e consentimento Evite registrar informações identificáveis em capturas de demonstração. Se um documento mencionar dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido",
+          "score": 0.8022536635398865
+        },
+        {
+          "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:4",
+          "filename": "pratica-de-rag.pdf",
+          "page": 2,
+          "position": 4,
+          "text": "houver, para localizar a evidência. É possível apresentar uma fonte existente que trata do mesmo assunto sem sustentar a conclusão. Limites Uma resposta deve indicar insuficiência de evidência se a passagem não contiver os dados necessários. Esse cuidado também se aplica quando a pergunta parece relevante para o documento ou quando a pontuação da busca é muito parecida com a de outras consultas. Encontrar o trecho e verificar se ele sustenta a afirmação são duas etapas da leitura. Lumifólio / Material didático de demonstração 2 / 2",
+          "score": 0.8016712665557861
+        }
+      ],
+      "retrieval_metrics": {
+        "precision_at_1": 1.0,
+        "evidence_recall_at_1": 1.0,
+        "document_hit_at_1": true,
+        "source_recall_at_1": 1.0,
+        "precision_at_2": 0.5,
+        "evidence_recall_at_2": 1.0,
+        "document_hit_at_2": true,
+        "source_recall_at_2": 1.0,
+        "precision_at_4": 0.25,
+        "evidence_recall_at_4": 1.0,
+        "document_hit_at_4": true,
+        "source_recall_at_4": 1.0
+      },
+      "generation_order": [
+        "rag",
+        "baseline"
+      ],
+      "rag": {
+        "elapsed_ms": 16356.12,
+        "output": {
+          "status": "insufficient",
+          "answer": "Não encontrei nos documentos evidências suficientes para responder a essa pergunta.",
+          "citations": [],
+          "hits": [
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 1,
+              "text": "Guia do laboratório fictício de recuperação semântica Entrega da prática O código que identifica a entrega do laboratório fictício é VETOR-17. Anote esse código no campo de identificação do exercício para vincular os resultados à mesma rodada. A atividade usa uma coleção pequena de anotações didáticas e registra a pergunta junto com o trecho recuperado. Os identificadores e procedimentos deste guia pertencem apenas ao cenário fictício da demonstração. Conferência experimental Antes de alterar o índice, salve a versão das anotações que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui",
+              "score": 0.9134799242019653
+            },
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 2,
+              "text": "que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui a pergunta original, o nome do documento consultado e um comentário da pessoa que conferiu a evidência. Cada revisão deve acontecer antes de combinar observações de diferentes rodadas. Entrega da análise Cada equipe registra três hipóteses de erro na seção de análise do laboratório. Uma hipótese é uma explicação plausível para o comportamento do sistema, a ser apoiada por exemplos observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou",
+              "score": 0.8357831835746765
+            },
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:1",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 1,
+              "text": "Cuidados com fontes em um assistente de estudos Seleção de material Antes de importar um documento real, confira se existe autorização para utilizá-lo. Em trabalhos acadêmicos, prefira documentos públicos ou escritos pela própria equipe. Materiais que contenham dados pessoais, conteúdo confidencial ou informações restritas podem ser substituídos por exemplos fictícios. O aluno deve respeitar as regras da fonte e da instituição ao compartilhar qualquer resultado. Dados e consentimento Evite registrar informações identificáveis em capturas de demonstração. Se um documento mencionar dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido",
+              "score": 0.8022536635398865
+            },
+            {
+              "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:4",
+              "filename": "pratica-de-rag.pdf",
+              "page": 2,
+              "position": 4,
+              "text": "houver, para localizar a evidência. É possível apresentar uma fonte existente que trata do mesmo assunto sem sustentar a conclusão. Limites Uma resposta deve indicar insuficiência de evidência se a passagem não contiver os dados necessários. Esse cuidado também se aplica quando a pergunta parece relevante para o documento ou quando a pontuação da busca é muito parecida com a de outras consultas. Encontrar o trecho e verificar se ele sustenta a afirmação são duas etapas da leitura. Lumifólio / Material didático de demonstração 2 / 2",
+              "score": 0.8016712665557861
+            }
+          ],
+          "submitted_ids": [
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+            "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:1",
+            "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:4"
+          ],
+          "model": "qwen2.5:3b",
+          "mode": "few-shot"
+        },
+        "quality": {
+          "concepts": {
+            "Código exato da entrega": false
+          },
+          "all_concepts_matched": false,
+          "has_expected_source": false,
+          "all_citations_expected": false,
+          "quotes_covering_gold_anchor": 0
+        }
+      },
+      "baseline": {
+        "elapsed_ms": 3979.12,
+        "output": "Não tenho informações específicas sobre um código de entrega para um laboratório fictício. Códigos de entrega geralmente são específicos para cada plataforma de aprendizado ou sistema de gestão de tarefas.",
+        "quality": {
+          "concepts": {
+            "Código exato da entrega": false
+          },
+          "all_concepts_matched": false
+        }
+      }
+    },
+    {
+      "id": "Q02",
+      "category": "answerable",
+      "question": "Por que o exercício mantém palavras em comum entre trechos consecutivos?",
+      "expected_answer": "A sobreposição preserva o contexto na fronteira entre trechos, diminuindo a perda de continuidade.",
+      "gold_evidence": [
+        {
+          "filename": "pratica-de-rag.pdf",
+          "page": 1,
+          "anchor": "preservar o contexto na fronteira entre eles"
+        },
+        {
+          "filename": "pratica-de-rag.pdf",
+          "page": 1,
+          "anchor": "perder sua continuação no próximo"
+        }
+      ],
+      "required_concepts": [
+        {
+          "label": "Continuidade do contexto",
+          "any_of": [
+            "contexto",
+            "continuidade",
+            "continuação",
+            "definição"
+          ]
+        },
+        {
+          "label": "Preservação nas fronteiras",
+          "any_of": [
+            "preserv",
+            "mant",
+            "perda",
+            "perder",
+            "continuidade"
+          ]
+        }
+      ],
+      "search_ms": 27.54,
+      "best_candidate_similarity": 0.8560703992843628,
+      "retrieved": [
+        {
+          "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:1",
+          "filename": "pratica-de-rag.pdf",
+          "page": 1,
+          "position": 1,
+          "text": "PRÁTICA DE RAG Divisão em trechos Preparação da base para a busca semântica Chunking Em um sistema RAG, a fragmentação divide o material em unidades menores que podem ser indexadas e recuperadas. No exercício, cada trecho preserva o número da página do PDF de origem, de modo que o estudante consiga localizar a passagem no documento. Sobreposição O exercício mantém algumas palavras em comum entre trechos consecutivos para preservar o contexto na fronteira entre eles. Se uma definição começar no fim de um trecho, a sobreposição reduz a chance de perder sua continuação no próximo. Compromisso A sobreposição aumenta a",
+          "score": 0.8560703992843628
+        },
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 2,
+          "text": "dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido retirados. Antes de compartilhar as respostas, confira as referências e leia os exemplos para identificar trechos que exigem cuidado. O histórico da sessão pode conter questões digitadas pelo estudante. Verificação Uma resposta automática pode parecer convincente mesmo quando o texto recuperado não declara a informação apresentada. Se a evidência for vaga ou ambígua, abra o material de origem e peça uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e",
+          "score": 0.8473334312438965
+        },
+        {
+          "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+          "filename": "pln-e-embeddings.pdf",
+          "page": 1,
+          "position": 2,
+          "text": "mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores parecidos indicam afinidade segundo o modelo. Uma dúvida sobre como consertar um automóvel e um manual de como vender um automóvel ainda podem parecer próximos. Por isso, a recuperação oferece candidatos que precisam ser lidos no contexto da pergunta. No índice, os vetores apontam para os trechos de origem, que podem ser abertos para conferência. Lumifólio / Material didático de demonstração 1 / 2",
+          "score": 0.8444905281066895
+        },
+        {
+          "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:2",
+          "filename": "pratica-de-rag.pdf",
+          "page": 1,
+          "position": 2,
+          "text": "fim de um trecho, a sobreposição reduz a chance de perder sua continuação no próximo. Compromisso A sobreposição aumenta a redundância do índice e pode devolver duas janelas que compartilham grande parte do texto. O tamanho dos trechos também deve limitar quanto texto entra no prompt. Na apresentação, compare os trechos exibidos e observe se há repetição. Um trecho é uma janela do texto original vinculada a uma fonte que pode ser conferida. Lumifólio / Material didático de demonstração 1 / 2",
+          "score": 0.8434840440750122
+        }
+      ],
+      "retrieval_metrics": {
+        "precision_at_1": 1.0,
+        "evidence_recall_at_1": 1.0,
+        "document_hit_at_1": true,
+        "source_recall_at_1": 1.0,
+        "precision_at_2": 0.5,
+        "evidence_recall_at_2": 1.0,
+        "document_hit_at_2": true,
+        "source_recall_at_2": 1.0,
+        "precision_at_4": 0.5,
+        "evidence_recall_at_4": 1.0,
+        "document_hit_at_4": true,
+        "source_recall_at_4": 1.0
+      },
+      "generation_order": [
+        "baseline",
+        "rag"
+      ],
+      "baseline": {
+        "elapsed_ms": 6869.72,
+        "output": "O exercício de exercitar a memória e a atenção pode ajudar a manter palavras em comum entre trechos consecutivos, pois essas atividades estimulam a formação de novas conexões neurais no cérebro. Essas conexões podem facilitar a associação entre diferentes partes de um texto ou memória, tornando mais fácil reconhecer padrões e palavras semelhantes.",
+        "quality": {
+          "concepts": {
+            "Continuidade do contexto": false,
+            "Preservação nas fronteiras": true
+          },
+          "all_concepts_matched": false
+        }
+      },
+      "rag": {
+        "elapsed_ms": 12831.5,
+        "output": {
+          "status": "answered",
+          "answer": "O exercício mantém algumas palavras em comum entre trechos consecutivos para preservar o contexto na fronteira entre eles.",
+          "citations": [
+            {
+              "source_id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:1",
+              "filename": "pratica-de-rag.pdf",
+              "page": 1,
+              "position": 1,
+              "quote": "O exercício mantém algumas palavras em comum entre trechos consecutivos para preservar o contexto na fronteira entre eles."
+            }
+          ],
+          "hits": [
+            {
+              "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:1",
+              "filename": "pratica-de-rag.pdf",
+              "page": 1,
+              "position": 1,
+              "text": "PRÁTICA DE RAG Divisão em trechos Preparação da base para a busca semântica Chunking Em um sistema RAG, a fragmentação divide o material em unidades menores que podem ser indexadas e recuperadas. No exercício, cada trecho preserva o número da página do PDF de origem, de modo que o estudante consiga localizar a passagem no documento. Sobreposição O exercício mantém algumas palavras em comum entre trechos consecutivos para preservar o contexto na fronteira entre eles. Se uma definição começar no fim de um trecho, a sobreposição reduz a chance de perder sua continuação no próximo. Compromisso A sobreposição aumenta a",
+              "score": 0.8560703992843628
+            },
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 2,
+              "text": "dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido retirados. Antes de compartilhar as respostas, confira as referências e leia os exemplos para identificar trechos que exigem cuidado. O histórico da sessão pode conter questões digitadas pelo estudante. Verificação Uma resposta automática pode parecer convincente mesmo quando o texto recuperado não declara a informação apresentada. Se a evidência for vaga ou ambígua, abra o material de origem e peça uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e",
+              "score": 0.8473334312438965
+            },
+            {
+              "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+              "filename": "pln-e-embeddings.pdf",
+              "page": 1,
+              "position": 2,
+              "text": "mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores parecidos indicam afinidade segundo o modelo. Uma dúvida sobre como consertar um automóvel e um manual de como vender um automóvel ainda podem parecer próximos. Por isso, a recuperação oferece candidatos que precisam ser lidos no contexto da pergunta. No índice, os vetores apontam para os trechos de origem, que podem ser abertos para conferência. Lumifólio / Material didático de demonstração 1 / 2",
+              "score": 0.8444905281066895
+            },
+            {
+              "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:2",
+              "filename": "pratica-de-rag.pdf",
+              "page": 1,
+              "position": 2,
+              "text": "fim de um trecho, a sobreposição reduz a chance de perder sua continuação no próximo. Compromisso A sobreposição aumenta a redundância do índice e pode devolver duas janelas que compartilham grande parte do texto. O tamanho dos trechos também deve limitar quanto texto entra no prompt. Na apresentação, compare os trechos exibidos e observe se há repetição. Um trecho é uma janela do texto original vinculada a uma fonte que pode ser conferida. Lumifólio / Material didático de demonstração 1 / 2",
+              "score": 0.8434840440750122
+            }
+          ],
+          "submitted_ids": [
+            "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:1",
+            "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+            "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+            "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:2"
+          ],
+          "model": "qwen2.5:3b",
+          "mode": "few-shot"
+        },
+        "quality": {
+          "concepts": {
+            "Continuidade do contexto": true,
+            "Preservação nas fronteiras": true
+          },
+          "all_concepts_matched": true,
+          "has_expected_source": true,
+          "all_citations_expected": true,
+          "quotes_covering_gold_anchor": 1
+        }
+      }
+    },
+    {
+      "id": "Q03",
+      "category": "answerable",
+      "question": "Como conferir no material de prática se uma citação sustenta a afirmação?",
+      "expected_answer": "Abra o trecho indicado e compare a afirmação com a passagem original.",
+      "gold_evidence": [
+        {
+          "filename": "pratica-de-rag.pdf",
+          "page": 2,
+          "anchor": "compare a afirmação com a passagem original"
+        }
+      ],
+      "required_concepts": [
+        {
+          "label": "Conferência da evidência",
+          "any_of": [
+            "compar",
+            "verific",
+            "confir"
+          ]
+        },
+        {
+          "label": "Passagem de origem",
+          "any_of": [
+            "passagem",
+            "trecho",
+            "original"
+          ]
+        }
+      ],
+      "search_ms": 33.03,
+      "best_candidate_similarity": 0.879361093044281,
+      "retrieved": [
+        {
+          "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:4",
+          "filename": "pratica-de-rag.pdf",
+          "page": 2,
+          "position": 4,
+          "text": "houver, para localizar a evidência. É possível apresentar uma fonte existente que trata do mesmo assunto sem sustentar a conclusão. Limites Uma resposta deve indicar insuficiência de evidência se a passagem não contiver os dados necessários. Esse cuidado também se aplica quando a pergunta parece relevante para o documento ou quando a pontuação da busca é muito parecida com a de outras consultas. Encontrar o trecho e verificar se ele sustenta a afirmação são duas etapas da leitura. Lumifólio / Material didático de demonstração 2 / 2",
+          "score": 0.879361093044281
+        },
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 3,
+          "text": "uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e confira possíveis diferenças entre o título e o nome do arquivo.",
+          "score": 0.8556140661239624
+        },
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 2,
+          "text": "dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido retirados. Antes de compartilhar as respostas, confira as referências e leia os exemplos para identificar trechos que exigem cuidado. O histórico da sessão pode conter questões digitadas pelo estudante. Verificação Uma resposta automática pode parecer convincente mesmo quando o texto recuperado não declara a informação apresentada. Se a evidência for vaga ou ambígua, abra o material de origem e peça uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e",
+          "score": 0.852313220500946
+        },
+        {
+          "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:3",
+          "filename": "pratica-de-rag.pdf",
+          "page": 2,
+          "position": 3,
+          "text": "PRÁTICA DE RAG Resposta fundamentada Da recuperação à confirmação da fonte Contexto A etapa de recuperação seleciona passagens candidatas antes da geração. O sistema pode atribuir um identificador temporário a cada passagem e inserir a lista no prompt, junto com a pergunta. O modelo recebe instruções para fundamentar sua explicação nessas passagens. Conferência Para conferir uma citação, abra o trecho indicado e compare a afirmação com a passagem original. Use o nome do arquivo e o número de página, se houver, para localizar a evidência. É possível apresentar uma fonte existente que trata do mesmo assunto sem sustentar a conclusão.",
+          "score": 0.8501189351081848
+        }
+      ],
+      "retrieval_metrics": {
+        "precision_at_1": 0.0,
+        "evidence_recall_at_1": 0.0,
+        "document_hit_at_1": true,
+        "source_recall_at_1": 1.0,
+        "precision_at_2": 0.0,
+        "evidence_recall_at_2": 0.0,
+        "document_hit_at_2": true,
+        "source_recall_at_2": 1.0,
+        "precision_at_4": 0.25,
+        "evidence_recall_at_4": 1.0,
+        "document_hit_at_4": true,
+        "source_recall_at_4": 1.0
+      },
+      "generation_order": [
+        "rag",
+        "baseline"
+      ],
+      "rag": {
+        "elapsed_ms": 16353.86,
+        "output": {
+          "status": "answered",
+          "answer": "Para conferir se uma citação sustenta uma afirmação, abra o trecho indicado e compare a afirmação com a passagem original. Use o nome do arquivo e o número de página, se houver, para localizar a evidência.",
+          "citations": [
+            {
+              "source_id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:3",
+              "filename": "pratica-de-rag.pdf",
+              "page": 2,
+              "position": 3,
+              "quote": "Para conferir uma citação, abra o trecho indicado e compare a afirmação com a passagem original. Use o nome do arquivo e o número de página, se houver, para localizar a evidência."
+            }
+          ],
+          "hits": [
+            {
+              "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:4",
+              "filename": "pratica-de-rag.pdf",
+              "page": 2,
+              "position": 4,
+              "text": "houver, para localizar a evidência. É possível apresentar uma fonte existente que trata do mesmo assunto sem sustentar a conclusão. Limites Uma resposta deve indicar insuficiência de evidência se a passagem não contiver os dados necessários. Esse cuidado também se aplica quando a pergunta parece relevante para o documento ou quando a pontuação da busca é muito parecida com a de outras consultas. Encontrar o trecho e verificar se ele sustenta a afirmação são duas etapas da leitura. Lumifólio / Material didático de demonstração 2 / 2",
+              "score": 0.879361093044281
+            },
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 3,
+              "text": "uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e confira possíveis diferenças entre o título e o nome do arquivo.",
+              "score": 0.8556140661239624
+            },
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 2,
+              "text": "dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido retirados. Antes de compartilhar as respostas, confira as referências e leia os exemplos para identificar trechos que exigem cuidado. O histórico da sessão pode conter questões digitadas pelo estudante. Verificação Uma resposta automática pode parecer convincente mesmo quando o texto recuperado não declara a informação apresentada. Se a evidência for vaga ou ambígua, abra o material de origem e peça uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e",
+              "score": 0.852313220500946
+            },
+            {
+              "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:3",
+              "filename": "pratica-de-rag.pdf",
+              "page": 2,
+              "position": 3,
+              "text": "PRÁTICA DE RAG Resposta fundamentada Da recuperação à confirmação da fonte Contexto A etapa de recuperação seleciona passagens candidatas antes da geração. O sistema pode atribuir um identificador temporário a cada passagem e inserir a lista no prompt, junto com a pergunta. O modelo recebe instruções para fundamentar sua explicação nessas passagens. Conferência Para conferir uma citação, abra o trecho indicado e compare a afirmação com a passagem original. Use o nome do arquivo e o número de página, se houver, para localizar a evidência. É possível apresentar uma fonte existente que trata do mesmo assunto sem sustentar a conclusão.",
+              "score": 0.8501189351081848
+            }
+          ],
+          "submitted_ids": [
+            "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:4",
+            "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+            "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+            "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:3"
+          ],
+          "model": "qwen2.5:3b",
+          "mode": "few-shot"
+        },
+        "quality": {
+          "concepts": {
+            "Conferência da evidência": true,
+            "Passagem de origem": true
+          },
+          "all_concepts_matched": true,
+          "has_expected_source": true,
+          "all_citations_expected": true,
+          "quotes_covering_gold_anchor": 1
+        }
+      },
+      "baseline": {
+        "elapsed_ms": 9351.63,
+        "output": "Para verificar se uma citação sustenta uma afirmação em um material de prática, você deve primeiro identificar claramente a afirmação e a citação. Em seguida, analise se a citação de fato sustenta ou contradiz a afirmação original. Isso pode envolver verificar a fonte da citação, a precisão da transcrição e se a citação realmente sustenta a afirmação de maneira coerente. Se houver alguma dúvida, é sempre útil consultar um professor ou revisar a fonte original da citação.",
+        "quality": {
+          "concepts": {
+            "Conferência da evidência": true,
+            "Passagem de origem": true
+          },
+          "all_concepts_matched": true
+        }
+      }
+    },
+    {
+      "id": "Q04",
+      "category": "answerable",
+      "question": "Que assunto o caderno usa para exemplificar a recuperação de uma paráfrase sobre consertar um carro?",
+      "expected_answer": "Manutenção de automóveis, equivalente à pergunta sobre reparar um veículo.",
+      "gold_evidence": [
+        {
+          "filename": "pln-e-embeddings.pdf",
+          "page": 1,
+          "anchor": "texto sobre manutenção de automóveis"
+        }
+      ],
+      "required_concepts": [
+        {
+          "label": "Manutenção ou reparo",
+          "any_of": [
+            "manutenção",
+            "repar",
+            "consert"
+          ]
+        },
+        {
+          "label": "Automóveis",
+          "any_of": [
+            "automóve",
+            "automóvel",
+            "veículo",
+            "carro"
+          ]
+        }
+      ],
+      "search_ms": 35.89,
+      "best_candidate_similarity": 0.8556907176971436,
+      "retrieved": [
+        {
+          "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+          "filename": "pln-e-embeddings.pdf",
+          "page": 1,
+          "position": 2,
+          "text": "mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores parecidos indicam afinidade segundo o modelo. Uma dúvida sobre como consertar um automóvel e um manual de como vender um automóvel ainda podem parecer próximos. Por isso, a recuperação oferece candidatos que precisam ser lidos no contexto da pergunta. No índice, os vetores apontam para os trechos de origem, que podem ser abertos para conferência. Lumifólio / Material didático de demonstração 1 / 2",
+          "score": 0.8556907176971436
+        },
+        {
+          "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:1",
+          "filename": "pln-e-embeddings.pdf",
+          "page": 1,
+          "position": 1,
+          "text": "CADERNO DE PLN Embeddings de texto Da linguagem natural aos vetores Representação Um embedding resume propriedades de um texto em um vetor numérico. O mesmo modelo representa a pergunta e os trechos em um espaço comum. Um modelo multilíngue permite comparar frases em idiomas diferentes, embora o resultado também dependa do acervo e da tarefa. Vocabulário A busca por palavras exatas pode perder relações de sentido. Por exemplo, “como reparar um veículo?” pode recuperar um texto sobre manutenção de automóveis, mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores",
+          "score": 0.8469064235687256
+        },
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:3",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 3,
+          "text": "observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou sem cobertura. A equipe compara os exemplos lado a lado antes de registrar a conclusão.",
+          "score": 0.8448935747146606
+        },
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 3,
+          "text": "uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e confira possíveis diferenças entre o título e o nome do arquivo.",
+          "score": 0.8340857028961182
+        }
+      ],
+      "retrieval_metrics": {
+        "precision_at_1": 0.0,
+        "evidence_recall_at_1": 0.0,
+        "document_hit_at_1": true,
+        "source_recall_at_1": 1.0,
+        "precision_at_2": 0.5,
+        "evidence_recall_at_2": 1.0,
+        "document_hit_at_2": true,
+        "source_recall_at_2": 1.0,
+        "precision_at_4": 0.25,
+        "evidence_recall_at_4": 1.0,
+        "document_hit_at_4": true,
+        "source_recall_at_4": 1.0
+      },
+      "generation_order": [
+        "baseline",
+        "rag"
+      ],
+      "baseline": {
+        "elapsed_ms": 6853.11,
+        "output": "Um assunto que poderia ser usado para exemplificar a recuperação de uma paráfrase sobre consertar um carro seria a mecânica automotiva. A recuperação da paráfrase poderia incluir a transposição de conceitos técnicos e procedimentos de reparo sem alterar o significado original, mantendo a relevância para um público técnico.",
+        "quality": {
+          "concepts": {
+            "Manutenção ou reparo": true,
+            "Automóveis": true
+          },
+          "all_concepts_matched": true
+        }
+      },
+      "rag": {
+        "elapsed_ms": 22681.64,
+        "output": {
+          "status": "insufficient",
+          "answer": "Não encontrei nos documentos evidências suficientes para responder a essa pergunta.",
+          "citations": [],
+          "hits": [
+            {
+              "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+              "filename": "pln-e-embeddings.pdf",
+              "page": 1,
+              "position": 2,
+              "text": "mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores parecidos indicam afinidade segundo o modelo. Uma dúvida sobre como consertar um automóvel e um manual de como vender um automóvel ainda podem parecer próximos. Por isso, a recuperação oferece candidatos que precisam ser lidos no contexto da pergunta. No índice, os vetores apontam para os trechos de origem, que podem ser abertos para conferência. Lumifólio / Material didático de demonstração 1 / 2",
+              "score": 0.8556907176971436
+            },
+            {
+              "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:1",
+              "filename": "pln-e-embeddings.pdf",
+              "page": 1,
+              "position": 1,
+              "text": "CADERNO DE PLN Embeddings de texto Da linguagem natural aos vetores Representação Um embedding resume propriedades de um texto em um vetor numérico. O mesmo modelo representa a pergunta e os trechos em um espaço comum. Um modelo multilíngue permite comparar frases em idiomas diferentes, embora o resultado também dependa do acervo e da tarefa. Vocabulário A busca por palavras exatas pode perder relações de sentido. Por exemplo, “como reparar um veículo?” pode recuperar um texto sobre manutenção de automóveis, mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores",
+              "score": 0.8469064235687256
+            },
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:3",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 3,
+              "text": "observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou sem cobertura. A equipe compara os exemplos lado a lado antes de registrar a conclusão.",
+              "score": 0.8448935747146606
+            },
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 3,
+              "text": "uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e confira possíveis diferenças entre o título e o nome do arquivo.",
+              "score": 0.8340857028961182
+            }
+          ],
+          "submitted_ids": [
+            "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+            "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:1",
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:3",
+            "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3"
+          ],
+          "model": "qwen2.5:3b",
+          "mode": "few-shot"
+        },
+        "quality": {
+          "concepts": {
+            "Manutenção ou reparo": false,
+            "Automóveis": false
+          },
+          "all_concepts_matched": false,
+          "has_expected_source": false,
+          "all_citations_expected": false,
+          "quotes_covering_gold_anchor": 0
+        }
+      }
+    },
+    {
+      "id": "Q05",
+      "category": "answerable",
+      "question": "Na medida de cosseno, importa a orientação dos vetores ou o comprimento de cada um?",
+      "expected_answer": "A medida compara a direção ou o ângulo entre os vetores e independe do comprimento de cada vetor.",
+      "gold_evidence": [
+        {
+          "filename": "pln-e-embeddings.pdf",
+          "page": 2,
+          "anchor": "compara a direção dos vetores pelo ângulo"
+        },
+        {
+          "filename": "pln-e-embeddings.pdf",
+          "page": 2,
+          "anchor": "não depende do comprimento de cada vetor"
+        }
+      ],
+      "required_concepts": [
+        {
+          "label": "Direção ou ângulo",
+          "any_of": [
+            "orientação",
+            "ângulo",
+            "direção"
+          ]
+        },
+        {
+          "label": "Independência de magnitude",
+          "any_of": [
+            "não depende",
+            "independe",
+            "sem considerar",
+            "sem depender",
+            "não se importa",
+            "não considera",
+            "não o comprimento",
+            "não do comprimento",
+            "não do tamanho",
+            "não a magnitude",
+            "não da magnitude"
+          ]
+        }
+      ],
+      "search_ms": 34.36,
+      "best_candidate_similarity": 0.8317142128944397,
+      "retrieved": [
+        {
+          "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+          "filename": "pln-e-embeddings.pdf",
+          "page": 1,
+          "position": 2,
+          "text": "mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores parecidos indicam afinidade segundo o modelo. Uma dúvida sobre como consertar um automóvel e um manual de como vender um automóvel ainda podem parecer próximos. Por isso, a recuperação oferece candidatos que precisam ser lidos no contexto da pergunta. No índice, os vetores apontam para os trechos de origem, que podem ser abertos para conferência. Lumifólio / Material didático de demonstração 1 / 2",
+          "score": 0.8317142128944397
+        },
+        {
+          "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:3",
+          "filename": "pln-e-embeddings.pdf",
+          "page": 2,
+          "position": 3,
+          "text": "CADERNO DE PLN Similaridade de cosseno Como interpretar o ranking da busca Comparação A similaridade de cosseno compara a direção dos vetores pelo ângulo entre eles. Ela não depende do comprimento de cada vetor. Depois da normalização, o produto escalar de dois vetores também calcula o cosseno entre eles. Ranking O índice ordena os trechos candidatos por proximidade com a consulta. Trechos próximos costumam compartilhar assunto, mas a posição na lista não comprova a existência da resposta. Uma escala de similaridade mede afinidade vetorial e não pode ser interpretada como probabilidade de acerto. Leitura crítica A pontuação muda quando usamos",
+          "score": 0.8283522725105286
+        },
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:3",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 3,
+          "text": "observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou sem cobertura. A equipe compara os exemplos lado a lado antes de registrar a conclusão.",
+          "score": 0.8217858076095581
+        },
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 3,
+          "text": "uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e confira possíveis diferenças entre o título e o nome do arquivo.",
+          "score": 0.8216999769210815
+        }
+      ],
+      "retrieval_metrics": {
+        "precision_at_1": 0.0,
+        "evidence_recall_at_1": 0.0,
+        "document_hit_at_1": true,
+        "source_recall_at_1": 0.0,
+        "precision_at_2": 0.5,
+        "evidence_recall_at_2": 1.0,
+        "document_hit_at_2": true,
+        "source_recall_at_2": 1.0,
+        "precision_at_4": 0.25,
+        "evidence_recall_at_4": 1.0,
+        "document_hit_at_4": true,
+        "source_recall_at_4": 1.0
+      },
+      "generation_order": [
+        "rag",
+        "baseline"
+      ],
+      "rag": {
+        "elapsed_ms": 13199.52,
+        "output": {
+          "status": "answered",
+          "answer": "Na medida de cosseno, importa a orientação dos vetores ou o comprimento de cada um?",
+          "citations": [
+            {
+              "source_id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:3",
+              "filename": "pln-e-embeddings.pdf",
+              "page": 2,
+              "position": 3,
+              "quote": "CADERNO DE PLN Similaridade de cosseno Como interpretar o ranking da busca Comparação A similaridade de cosseno compara a direção dos vetores pelo ângulo entre eles. Ela não depende do comprimento de cada vetor."
+            }
+          ],
+          "hits": [
+            {
+              "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+              "filename": "pln-e-embeddings.pdf",
+              "page": 1,
+              "position": 2,
+              "text": "mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores parecidos indicam afinidade segundo o modelo. Uma dúvida sobre como consertar um automóvel e um manual de como vender um automóvel ainda podem parecer próximos. Por isso, a recuperação oferece candidatos que precisam ser lidos no contexto da pergunta. No índice, os vetores apontam para os trechos de origem, que podem ser abertos para conferência. Lumifólio / Material didático de demonstração 1 / 2",
+              "score": 0.8317142128944397
+            },
+            {
+              "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:3",
+              "filename": "pln-e-embeddings.pdf",
+              "page": 2,
+              "position": 3,
+              "text": "CADERNO DE PLN Similaridade de cosseno Como interpretar o ranking da busca Comparação A similaridade de cosseno compara a direção dos vetores pelo ângulo entre eles. Ela não depende do comprimento de cada vetor. Depois da normalização, o produto escalar de dois vetores também calcula o cosseno entre eles. Ranking O índice ordena os trechos candidatos por proximidade com a consulta. Trechos próximos costumam compartilhar assunto, mas a posição na lista não comprova a existência da resposta. Uma escala de similaridade mede afinidade vetorial e não pode ser interpretada como probabilidade de acerto. Leitura crítica A pontuação muda quando usamos",
+              "score": 0.8283522725105286
+            },
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:3",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 3,
+              "text": "observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou sem cobertura. A equipe compara os exemplos lado a lado antes de registrar a conclusão.",
+              "score": 0.8217858076095581
+            },
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 3,
+              "text": "uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e confira possíveis diferenças entre o título e o nome do arquivo.",
+              "score": 0.8216999769210815
+            }
+          ],
+          "submitted_ids": [
+            "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+            "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:3",
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:3",
+            "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3"
+          ],
+          "model": "qwen2.5:3b",
+          "mode": "few-shot"
+        },
+        "quality": {
+          "concepts": {
+            "Direção ou ângulo": true,
+            "Independência de magnitude": false
+          },
+          "all_concepts_matched": false,
+          "has_expected_source": true,
+          "all_citations_expected": true,
+          "quotes_covering_gold_anchor": 1
+        }
+      },
+      "baseline": {
+        "elapsed_ms": 4886.96,
+        "output": "Na medida de cosseno, importa a orientação dos vetores, mas não necessariamente o comprimento de cada um. O cosseno da ângulo entre dois vetores é calculado considerando apenas suas direções, ignorando seus comprimentos.",
+        "quality": {
+          "concepts": {
+            "Direção ou ângulo": true,
+            "Independência de magnitude": false
+          },
+          "all_concepts_matched": false
+        }
+      }
+    },
+    {
+      "id": "Q06",
+      "category": "answerable",
+      "question": "Qual ficha registra a revisão que uma segunda pessoa faz no laboratório fictício?",
+      "expected_answer": "A revisão por uma segunda pessoa é registrada na ficha Mira Azul.",
+      "gold_evidence": [
+        {
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "anchor": "A ficha Mira Azul é usada para registrar a revisão"
+        }
+      ],
+      "required_concepts": [
+        {
+          "label": "Nome exato da ficha",
+          "any_of": [
+            "Mira Azul"
+          ]
+        }
+      ],
+      "search_ms": 35.26,
+      "best_candidate_similarity": 0.9012657403945923,
+      "retrieved": [
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 2,
+          "text": "que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui a pergunta original, o nome do documento consultado e um comentário da pessoa que conferiu a evidência. Cada revisão deve acontecer antes de combinar observações de diferentes rodadas. Entrega da análise Cada equipe registra três hipóteses de erro na seção de análise do laboratório. Uma hipótese é uma explicação plausível para o comportamento do sistema, a ser apoiada por exemplos observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou",
+          "score": 0.9012657403945923
+        },
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 1,
+          "text": "Guia do laboratório fictício de recuperação semântica Entrega da prática O código que identifica a entrega do laboratório fictício é VETOR-17. Anote esse código no campo de identificação do exercício para vincular os resultados à mesma rodada. A atividade usa uma coleção pequena de anotações didáticas e registra a pergunta junto com o trecho recuperado. Os identificadores e procedimentos deste guia pertencem apenas ao cenário fictício da demonstração. Conferência experimental Antes de alterar o índice, salve a versão das anotações que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui",
+          "score": 0.8962209820747375
+        },
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:3",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 3,
+          "text": "observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou sem cobertura. A equipe compara os exemplos lado a lado antes de registrar a conclusão.",
+          "score": 0.8281096816062927
+        },
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 2,
+          "text": "dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido retirados. Antes de compartilhar as respostas, confira as referências e leia os exemplos para identificar trechos que exigem cuidado. O histórico da sessão pode conter questões digitadas pelo estudante. Verificação Uma resposta automática pode parecer convincente mesmo quando o texto recuperado não declara a informação apresentada. Se a evidência for vaga ou ambígua, abra o material de origem e peça uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e",
+          "score": 0.8215624690055847
+        }
+      ],
+      "retrieval_metrics": {
+        "precision_at_1": 1.0,
+        "evidence_recall_at_1": 1.0,
+        "document_hit_at_1": true,
+        "source_recall_at_1": 1.0,
+        "precision_at_2": 1.0,
+        "evidence_recall_at_2": 1.0,
+        "document_hit_at_2": true,
+        "source_recall_at_2": 1.0,
+        "precision_at_4": 0.5,
+        "evidence_recall_at_4": 1.0,
+        "document_hit_at_4": true,
+        "source_recall_at_4": 1.0
+      },
+      "generation_order": [
+        "baseline",
+        "rag"
+      ],
+      "baseline": {
+        "elapsed_ms": 8352.91,
+        "output": "Não tenho certeza sobre a especificação exata de um sistema de registro de revisões em um laboratório fictício, mas geralmente, tal registro seria feito em um formulário de revisão ou em um sistema de gerenciamento de processos e documentação. Este tipo de documento poderia incluir informações sobre quem fez a revisão, quando ocorreu, quais foram as alterações ou correções feitas e quais são os responsáveis pela aprovação final.",
+        "quality": {
+          "concepts": {
+            "Nome exato da ficha": false
+          },
+          "all_concepts_matched": false
+        }
+      },
+      "rag": {
+        "elapsed_ms": 11802.44,
+        "output": {
+          "status": "answered",
+          "answer": "A ficha Mira Azul registra a revisão por uma segunda pessoa.",
+          "citations": [
+            {
+              "source_id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 1,
+              "quote": "A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa."
+            }
+          ],
+          "hits": [
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 2,
+              "text": "que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui a pergunta original, o nome do documento consultado e um comentário da pessoa que conferiu a evidência. Cada revisão deve acontecer antes de combinar observações de diferentes rodadas. Entrega da análise Cada equipe registra três hipóteses de erro na seção de análise do laboratório. Uma hipótese é uma explicação plausível para o comportamento do sistema, a ser apoiada por exemplos observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou",
+              "score": 0.9012657403945923
+            },
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 1,
+              "text": "Guia do laboratório fictício de recuperação semântica Entrega da prática O código que identifica a entrega do laboratório fictício é VETOR-17. Anote esse código no campo de identificação do exercício para vincular os resultados à mesma rodada. A atividade usa uma coleção pequena de anotações didáticas e registra a pergunta junto com o trecho recuperado. Os identificadores e procedimentos deste guia pertencem apenas ao cenário fictício da demonstração. Conferência experimental Antes de alterar o índice, salve a versão das anotações que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui",
+              "score": 0.8962209820747375
+            },
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:3",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 3,
+              "text": "observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou sem cobertura. A equipe compara os exemplos lado a lado antes de registrar a conclusão.",
+              "score": 0.8281096816062927
+            },
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 2,
+              "text": "dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido retirados. Antes de compartilhar as respostas, confira as referências e leia os exemplos para identificar trechos que exigem cuidado. O histórico da sessão pode conter questões digitadas pelo estudante. Verificação Uma resposta automática pode parecer convincente mesmo quando o texto recuperado não declara a informação apresentada. Se a evidência for vaga ou ambígua, abra o material de origem e peça uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e",
+              "score": 0.8215624690055847
+            }
+          ],
+          "submitted_ids": [
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:3",
+            "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2"
+          ],
+          "model": "qwen2.5:3b",
+          "mode": "few-shot"
+        },
+        "quality": {
+          "concepts": {
+            "Nome exato da ficha": true
+          },
+          "all_concepts_matched": true,
+          "has_expected_source": true,
+          "all_citations_expected": true,
+          "quotes_covering_gold_anchor": 1
+        }
+      }
+    },
+    {
+      "id": "Q07",
+      "category": "answerable",
+      "question": "Quantas hipóteses de erro cada equipe deve registrar na análise do laboratório fictício?",
+      "expected_answer": "Cada equipe deve registrar três hipóteses de erro.",
+      "gold_evidence": [
+        {
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "anchor": "registra três hipóteses de erro"
+        }
+      ],
+      "required_concepts": [
+        {
+          "label": "Quantidade de hipóteses",
+          "any_of": [
+            "três",
+            "3"
+          ]
+        }
+      ],
+      "search_ms": 38.92,
+      "best_candidate_similarity": 0.8941508531570435,
+      "retrieved": [
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 2,
+          "text": "que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui a pergunta original, o nome do documento consultado e um comentário da pessoa que conferiu a evidência. Cada revisão deve acontecer antes de combinar observações de diferentes rodadas. Entrega da análise Cada equipe registra três hipóteses de erro na seção de análise do laboratório. Uma hipótese é uma explicação plausível para o comportamento do sistema, a ser apoiada por exemplos observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou",
+          "score": 0.8941508531570435
+        },
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 1,
+          "text": "Guia do laboratório fictício de recuperação semântica Entrega da prática O código que identifica a entrega do laboratório fictício é VETOR-17. Anote esse código no campo de identificação do exercício para vincular os resultados à mesma rodada. A atividade usa uma coleção pequena de anotações didáticas e registra a pergunta junto com o trecho recuperado. Os identificadores e procedimentos deste guia pertencem apenas ao cenário fictício da demonstração. Conferência experimental Antes de alterar o índice, salve a versão das anotações que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui",
+          "score": 0.8754702210426331
+        },
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:3",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 3,
+          "text": "observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou sem cobertura. A equipe compara os exemplos lado a lado antes de registrar a conclusão.",
+          "score": 0.8411915898323059
+        },
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 3,
+          "text": "uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e confira possíveis diferenças entre o título e o nome do arquivo.",
+          "score": 0.8266403079032898
+        }
+      ],
+      "retrieval_metrics": {
+        "precision_at_1": 1.0,
+        "evidence_recall_at_1": 1.0,
+        "document_hit_at_1": true,
+        "source_recall_at_1": 1.0,
+        "precision_at_2": 0.5,
+        "evidence_recall_at_2": 1.0,
+        "document_hit_at_2": true,
+        "source_recall_at_2": 1.0,
+        "precision_at_4": 0.25,
+        "evidence_recall_at_4": 1.0,
+        "document_hit_at_4": true,
+        "source_recall_at_4": 1.0
+      },
+      "generation_order": [
+        "rag",
+        "baseline"
+      ],
+      "rag": {
+        "elapsed_ms": 10692.1,
+        "output": {
+          "status": "answered",
+          "answer": "Cada equipe registra três hipóteses de erro na seção de análise do laboratório.",
+          "citations": [
+            {
+              "source_id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 2,
+              "quote": "Cada equipe registra três hipóteses de erro na seção de análise do laboratório."
+            }
+          ],
+          "hits": [
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 2,
+              "text": "que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui a pergunta original, o nome do documento consultado e um comentário da pessoa que conferiu a evidência. Cada revisão deve acontecer antes de combinar observações de diferentes rodadas. Entrega da análise Cada equipe registra três hipóteses de erro na seção de análise do laboratório. Uma hipótese é uma explicação plausível para o comportamento do sistema, a ser apoiada por exemplos observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou",
+              "score": 0.8941508531570435
+            },
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 1,
+              "text": "Guia do laboratório fictício de recuperação semântica Entrega da prática O código que identifica a entrega do laboratório fictício é VETOR-17. Anote esse código no campo de identificação do exercício para vincular os resultados à mesma rodada. A atividade usa uma coleção pequena de anotações didáticas e registra a pergunta junto com o trecho recuperado. Os identificadores e procedimentos deste guia pertencem apenas ao cenário fictício da demonstração. Conferência experimental Antes de alterar o índice, salve a versão das anotações que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui",
+              "score": 0.8754702210426331
+            },
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:3",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 3,
+              "text": "observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou sem cobertura. A equipe compara os exemplos lado a lado antes de registrar a conclusão.",
+              "score": 0.8411915898323059
+            },
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 3,
+              "text": "uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e confira possíveis diferenças entre o título e o nome do arquivo.",
+              "score": 0.8266403079032898
+            }
+          ],
+          "submitted_ids": [
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:3",
+            "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3"
+          ],
+          "model": "qwen2.5:3b",
+          "mode": "few-shot"
+        },
+        "quality": {
+          "concepts": {
+            "Quantidade de hipóteses": true
+          },
+          "all_concepts_matched": true,
+          "has_expected_source": true,
+          "all_citations_expected": true,
+          "quotes_covering_gold_anchor": 1
+        }
+      },
+      "baseline": {
+        "elapsed_ms": 5266.56,
+        "output": "Não tenho informações específicas sobre a quantidade de hipóteses de erro que cada equipe deve registrar em uma análise de laboratório fictício. Para esse tipo de detalhe, seria necessário consultar as instruções ou o manual de orientação do exercício em questão.",
+        "quality": {
+          "concepts": {
+            "Quantidade de hipóteses": false
+          },
+          "all_concepts_matched": false
+        }
+      }
+    },
+    {
+      "id": "Q08",
+      "category": "answerable",
+      "question": "O que devo verificar antes de importar um material de terceiros no assistente?",
+      "expected_answer": "Verifique se existe autorização para usar o material.",
+      "gold_evidence": [
+        {
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "anchor": "confira se existe autorização para utilizá-lo"
+        }
+      ],
+      "required_concepts": [
+        {
+          "label": "Autorização de uso",
+          "any_of": [
+            "autoriza",
+            "permissão",
+            "consentimento"
+          ]
+        }
+      ],
+      "search_ms": 36.13,
+      "best_candidate_similarity": 0.8709030151367188,
+      "retrieved": [
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:1",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 1,
+          "text": "Cuidados com fontes em um assistente de estudos Seleção de material Antes de importar um documento real, confira se existe autorização para utilizá-lo. Em trabalhos acadêmicos, prefira documentos públicos ou escritos pela própria equipe. Materiais que contenham dados pessoais, conteúdo confidencial ou informações restritas podem ser substituídos por exemplos fictícios. O aluno deve respeitar as regras da fonte e da instituição ao compartilhar qualquer resultado. Dados e consentimento Evite registrar informações identificáveis em capturas de demonstração. Se um documento mencionar dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido",
+          "score": 0.8709030151367188
+        },
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 2,
+          "text": "dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido retirados. Antes de compartilhar as respostas, confira as referências e leia os exemplos para identificar trechos que exigem cuidado. O histórico da sessão pode conter questões digitadas pelo estudante. Verificação Uma resposta automática pode parecer convincente mesmo quando o texto recuperado não declara a informação apresentada. Se a evidência for vaga ou ambígua, abra o material de origem e peça uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e",
+          "score": 0.8483241200447083
+        },
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 3,
+          "text": "uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e confira possíveis diferenças entre o título e o nome do arquivo.",
+          "score": 0.8392201662063599
+        },
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 2,
+          "text": "que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui a pergunta original, o nome do documento consultado e um comentário da pessoa que conferiu a evidência. Cada revisão deve acontecer antes de combinar observações de diferentes rodadas. Entrega da análise Cada equipe registra três hipóteses de erro na seção de análise do laboratório. Uma hipótese é uma explicação plausível para o comportamento do sistema, a ser apoiada por exemplos observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou",
+          "score": 0.8334735631942749
+        }
+      ],
+      "retrieval_metrics": {
+        "precision_at_1": 1.0,
+        "evidence_recall_at_1": 1.0,
+        "document_hit_at_1": true,
+        "source_recall_at_1": 1.0,
+        "precision_at_2": 0.5,
+        "evidence_recall_at_2": 1.0,
+        "document_hit_at_2": true,
+        "source_recall_at_2": 1.0,
+        "precision_at_4": 0.25,
+        "evidence_recall_at_4": 1.0,
+        "document_hit_at_4": true,
+        "source_recall_at_4": 1.0
+      },
+      "generation_order": [
+        "baseline",
+        "rag"
+      ],
+      "baseline": {
+        "elapsed_ms": 8186.53,
+        "output": "Antes de importar qualquer material de terceiros no assistente, você deve verificar a licença de uso, garantindo que você esteja autorizado a usar o material. Além disso, é importante verificar se o material não viola direitos autorais ou outras leis de propriedade intelectual. Também é recomendável verificar a qualidade e a precisão do material para garantir que seja útil e confiável para o seu projeto.",
+        "quality": {
+          "concepts": {
+            "Autorização de uso": true
+          },
+          "all_concepts_matched": true
+        }
+      },
+      "rag": {
+        "elapsed_ms": 7656.64,
+        "output": {
+          "status": "insufficient",
+          "answer": "Não encontrei nos documentos evidências suficientes para responder a essa pergunta.",
+          "citations": [],
+          "hits": [
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:1",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 1,
+              "text": "Cuidados com fontes em um assistente de estudos Seleção de material Antes de importar um documento real, confira se existe autorização para utilizá-lo. Em trabalhos acadêmicos, prefira documentos públicos ou escritos pela própria equipe. Materiais que contenham dados pessoais, conteúdo confidencial ou informações restritas podem ser substituídos por exemplos fictícios. O aluno deve respeitar as regras da fonte e da instituição ao compartilhar qualquer resultado. Dados e consentimento Evite registrar informações identificáveis em capturas de demonstração. Se um documento mencionar dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido",
+              "score": 0.8709030151367188
+            },
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 2,
+              "text": "dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido retirados. Antes de compartilhar as respostas, confira as referências e leia os exemplos para identificar trechos que exigem cuidado. O histórico da sessão pode conter questões digitadas pelo estudante. Verificação Uma resposta automática pode parecer convincente mesmo quando o texto recuperado não declara a informação apresentada. Se a evidência for vaga ou ambígua, abra o material de origem e peça uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e",
+              "score": 0.8483241200447083
+            },
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 3,
+              "text": "uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e confira possíveis diferenças entre o título e o nome do arquivo.",
+              "score": 0.8392201662063599
+            },
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 2,
+              "text": "que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui a pergunta original, o nome do documento consultado e um comentário da pessoa que conferiu a evidência. Cada revisão deve acontecer antes de combinar observações de diferentes rodadas. Entrega da análise Cada equipe registra três hipóteses de erro na seção de análise do laboratório. Uma hipótese é uma explicação plausível para o comportamento do sistema, a ser apoiada por exemplos observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou",
+              "score": 0.8334735631942749
+            }
+          ],
+          "submitted_ids": [
+            "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:1",
+            "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+            "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2"
+          ],
+          "model": "qwen2.5:3b",
+          "mode": "few-shot"
+        },
+        "quality": {
+          "concepts": {
+            "Autorização de uso": false
+          },
+          "all_concepts_matched": false,
+          "has_expected_source": false,
+          "all_citations_expected": false,
+          "quotes_covering_gold_anchor": 0
+        }
+      }
+    },
+    {
+      "id": "Q09",
+      "category": "near_unanswerable",
+      "question": "Qual é o prazo de entrega do laboratório fictício?",
+      "expected_answer": "O acervo não informa uma data ou prazo de entrega.",
+      "gold_evidence": [],
+      "required_concepts": [],
+      "search_ms": 30.72,
+      "best_candidate_similarity": 0.879148542881012,
+      "retrieved": [
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 1,
+          "text": "Guia do laboratório fictício de recuperação semântica Entrega da prática O código que identifica a entrega do laboratório fictício é VETOR-17. Anote esse código no campo de identificação do exercício para vincular os resultados à mesma rodada. A atividade usa uma coleção pequena de anotações didáticas e registra a pergunta junto com o trecho recuperado. Os identificadores e procedimentos deste guia pertencem apenas ao cenário fictício da demonstração. Conferência experimental Antes de alterar o índice, salve a versão das anotações que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui",
+          "score": 0.879148542881012
+        },
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 2,
+          "text": "que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui a pergunta original, o nome do documento consultado e um comentário da pessoa que conferiu a evidência. Cada revisão deve acontecer antes de combinar observações de diferentes rodadas. Entrega da análise Cada equipe registra três hipóteses de erro na seção de análise do laboratório. Uma hipótese é uma explicação plausível para o comportamento do sistema, a ser apoiada por exemplos observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou",
+          "score": 0.8326125741004944
+        },
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:1",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 1,
+          "text": "Cuidados com fontes em um assistente de estudos Seleção de material Antes de importar um documento real, confira se existe autorização para utilizá-lo. Em trabalhos acadêmicos, prefira documentos públicos ou escritos pela própria equipe. Materiais que contenham dados pessoais, conteúdo confidencial ou informações restritas podem ser substituídos por exemplos fictícios. O aluno deve respeitar as regras da fonte e da instituição ao compartilhar qualquer resultado. Dados e consentimento Evite registrar informações identificáveis em capturas de demonstração. Se um documento mencionar dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido",
+          "score": 0.8100606203079224
+        },
+        {
+          "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:3",
+          "filename": "pratica-de-rag.pdf",
+          "page": 2,
+          "position": 3,
+          "text": "PRÁTICA DE RAG Resposta fundamentada Da recuperação à confirmação da fonte Contexto A etapa de recuperação seleciona passagens candidatas antes da geração. O sistema pode atribuir um identificador temporário a cada passagem e inserir a lista no prompt, junto com a pergunta. O modelo recebe instruções para fundamentar sua explicação nessas passagens. Conferência Para conferir uma citação, abra o trecho indicado e compare a afirmação com a passagem original. Use o nome do arquivo e o número de página, se houver, para localizar a evidência. É possível apresentar uma fonte existente que trata do mesmo assunto sem sustentar a conclusão.",
+          "score": 0.8056257963180542
+        }
+      ],
+      "generation_order": [
+        "rag",
+        "baseline"
+      ],
+      "rag": {
+        "elapsed_ms": 8255.61,
+        "output": {
+          "status": "insufficient",
+          "answer": "Não encontrei nos documentos evidências suficientes para responder a essa pergunta.",
+          "citations": [],
+          "hits": [
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 1,
+              "text": "Guia do laboratório fictício de recuperação semântica Entrega da prática O código que identifica a entrega do laboratório fictício é VETOR-17. Anote esse código no campo de identificação do exercício para vincular os resultados à mesma rodada. A atividade usa uma coleção pequena de anotações didáticas e registra a pergunta junto com o trecho recuperado. Os identificadores e procedimentos deste guia pertencem apenas ao cenário fictício da demonstração. Conferência experimental Antes de alterar o índice, salve a versão das anotações que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui",
+              "score": 0.879148542881012
+            },
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 2,
+              "text": "que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui a pergunta original, o nome do documento consultado e um comentário da pessoa que conferiu a evidência. Cada revisão deve acontecer antes de combinar observações de diferentes rodadas. Entrega da análise Cada equipe registra três hipóteses de erro na seção de análise do laboratório. Uma hipótese é uma explicação plausível para o comportamento do sistema, a ser apoiada por exemplos observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou",
+              "score": 0.8326125741004944
+            },
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:1",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 1,
+              "text": "Cuidados com fontes em um assistente de estudos Seleção de material Antes de importar um documento real, confira se existe autorização para utilizá-lo. Em trabalhos acadêmicos, prefira documentos públicos ou escritos pela própria equipe. Materiais que contenham dados pessoais, conteúdo confidencial ou informações restritas podem ser substituídos por exemplos fictícios. O aluno deve respeitar as regras da fonte e da instituição ao compartilhar qualquer resultado. Dados e consentimento Evite registrar informações identificáveis em capturas de demonstração. Se um documento mencionar dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido",
+              "score": 0.8100606203079224
+            },
+            {
+              "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:3",
+              "filename": "pratica-de-rag.pdf",
+              "page": 2,
+              "position": 3,
+              "text": "PRÁTICA DE RAG Resposta fundamentada Da recuperação à confirmação da fonte Contexto A etapa de recuperação seleciona passagens candidatas antes da geração. O sistema pode atribuir um identificador temporário a cada passagem e inserir a lista no prompt, junto com a pergunta. O modelo recebe instruções para fundamentar sua explicação nessas passagens. Conferência Para conferir uma citação, abra o trecho indicado e compare a afirmação com a passagem original. Use o nome do arquivo e o número de página, se houver, para localizar a evidência. É possível apresentar uma fonte existente que trata do mesmo assunto sem sustentar a conclusão.",
+              "score": 0.8056257963180542
+            }
+          ],
+          "submitted_ids": [
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+            "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:1",
+            "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:3"
+          ],
+          "model": "qwen2.5:3b",
+          "mode": "few-shot"
+        },
+        "refused_without_citations": true
+      },
+      "baseline": {
+        "elapsed_ms": 3885.98,
+        "output": "O prazo de entrega do laboratório fictício geralmente é fornecido pelo professor ou pelo curso. É importante verificar essa informação diretamente com o responsável para garantir que você esteja ciente do prazo correto."
+      }
+    },
+    {
+      "id": "Q10",
+      "category": "near_unanswerable",
+      "question": "Quantas dimensões têm os vetores usados pelo laboratório fictício?",
+      "expected_answer": "O acervo não informa a dimensionalidade dos vetores do exercício.",
+      "gold_evidence": [],
+      "required_concepts": [],
+      "search_ms": 30.86,
+      "best_candidate_similarity": 0.8690906763076782,
+      "retrieved": [
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 1,
+          "text": "Guia do laboratório fictício de recuperação semântica Entrega da prática O código que identifica a entrega do laboratório fictício é VETOR-17. Anote esse código no campo de identificação do exercício para vincular os resultados à mesma rodada. A atividade usa uma coleção pequena de anotações didáticas e registra a pergunta junto com o trecho recuperado. Os identificadores e procedimentos deste guia pertencem apenas ao cenário fictício da demonstração. Conferência experimental Antes de alterar o índice, salve a versão das anotações que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui",
+          "score": 0.8690906763076782
+        },
+        {
+          "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+          "filename": "pln-e-embeddings.pdf",
+          "page": 1,
+          "position": 2,
+          "text": "mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores parecidos indicam afinidade segundo o modelo. Uma dúvida sobre como consertar um automóvel e um manual de como vender um automóvel ainda podem parecer próximos. Por isso, a recuperação oferece candidatos que precisam ser lidos no contexto da pergunta. No índice, os vetores apontam para os trechos de origem, que podem ser abertos para conferência. Lumifólio / Material didático de demonstração 1 / 2",
+          "score": 0.8384785652160645
+        },
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 2,
+          "text": "que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui a pergunta original, o nome do documento consultado e um comentário da pessoa que conferiu a evidência. Cada revisão deve acontecer antes de combinar observações de diferentes rodadas. Entrega da análise Cada equipe registra três hipóteses de erro na seção de análise do laboratório. Uma hipótese é uma explicação plausível para o comportamento do sistema, a ser apoiada por exemplos observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou",
+          "score": 0.836560845375061
+        },
+        {
+          "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:1",
+          "filename": "pln-e-embeddings.pdf",
+          "page": 1,
+          "position": 1,
+          "text": "CADERNO DE PLN Embeddings de texto Da linguagem natural aos vetores Representação Um embedding resume propriedades de um texto em um vetor numérico. O mesmo modelo representa a pergunta e os trechos em um espaço comum. Um modelo multilíngue permite comparar frases em idiomas diferentes, embora o resultado também dependa do acervo e da tarefa. Vocabulário A busca por palavras exatas pode perder relações de sentido. Por exemplo, “como reparar um veículo?” pode recuperar um texto sobre manutenção de automóveis, mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores",
+          "score": 0.8131861686706543
+        }
+      ],
+      "generation_order": [
+        "baseline",
+        "rag"
+      ],
+      "baseline": {
+        "elapsed_ms": 4652.57,
+        "output": "Vetores usados em matemática e física geralmente são considerados bidimensionais ou tridimensionais, dependendo do contexto específico. Em física, por exemplo, os vetores de força e velocidade são frequentemente tratados em três dimensões."
+      },
+      "rag": {
+        "elapsed_ms": 8065.8,
+        "output": {
+          "status": "insufficient",
+          "answer": "Não encontrei nos documentos evidências suficientes para responder a essa pergunta.",
+          "citations": [],
+          "hits": [
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 1,
+              "text": "Guia do laboratório fictício de recuperação semântica Entrega da prática O código que identifica a entrega do laboratório fictício é VETOR-17. Anote esse código no campo de identificação do exercício para vincular os resultados à mesma rodada. A atividade usa uma coleção pequena de anotações didáticas e registra a pergunta junto com o trecho recuperado. Os identificadores e procedimentos deste guia pertencem apenas ao cenário fictício da demonstração. Conferência experimental Antes de alterar o índice, salve a versão das anotações que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui",
+              "score": 0.8690906763076782
+            },
+            {
+              "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+              "filename": "pln-e-embeddings.pdf",
+              "page": 1,
+              "position": 2,
+              "text": "mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores parecidos indicam afinidade segundo o modelo. Uma dúvida sobre como consertar um automóvel e um manual de como vender um automóvel ainda podem parecer próximos. Por isso, a recuperação oferece candidatos que precisam ser lidos no contexto da pergunta. No índice, os vetores apontam para os trechos de origem, que podem ser abertos para conferência. Lumifólio / Material didático de demonstração 1 / 2",
+              "score": 0.8384785652160645
+            },
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 2,
+              "text": "que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui a pergunta original, o nome do documento consultado e um comentário da pessoa que conferiu a evidência. Cada revisão deve acontecer antes de combinar observações de diferentes rodadas. Entrega da análise Cada equipe registra três hipóteses de erro na seção de análise do laboratório. Uma hipótese é uma explicação plausível para o comportamento do sistema, a ser apoiada por exemplos observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou",
+              "score": 0.836560845375061
+            },
+            {
+              "id": "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:1",
+              "filename": "pln-e-embeddings.pdf",
+              "page": 1,
+              "position": 1,
+              "text": "CADERNO DE PLN Embeddings de texto Da linguagem natural aos vetores Representação Um embedding resume propriedades de um texto em um vetor numérico. O mesmo modelo representa a pergunta e os trechos em um espaço comum. Um modelo multilíngue permite comparar frases em idiomas diferentes, embora o resultado também dependa do acervo e da tarefa. Vocabulário A busca por palavras exatas pode perder relações de sentido. Por exemplo, “como reparar um veículo?” pode recuperar um texto sobre manutenção de automóveis, mesmo sem repetir a palavra veículo. A ideia é comparar o sentido aproximado, sem exigir a mesma grafia. Limites Vetores",
+              "score": 0.8131861686706543
+            }
+          ],
+          "submitted_ids": [
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+            "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:2",
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+            "6d5f13ceaf85158ded20644429fd478e6fa65ab52729d10a3785e8a9b10bb49b:1"
+          ],
+          "model": "qwen2.5:3b",
+          "mode": "few-shot"
+        },
+        "refused_without_citations": true
+      }
+    },
+    {
+      "id": "Q11",
+      "category": "far_unanswerable",
+      "question": "Quem foi o primeiro imperador romano?",
+      "expected_answer": "Não há evidência no acervo sobre a história do Império Romano.",
+      "gold_evidence": [],
+      "required_concepts": [],
+      "search_ms": 27.55,
+      "best_candidate_similarity": 0.7531211376190186,
+      "retrieved": [
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 3,
+          "text": "uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e confira possíveis diferenças entre o título e o nome do arquivo.",
+          "score": 0.7531211376190186
+        },
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 2,
+          "text": "dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido retirados. Antes de compartilhar as respostas, confira as referências e leia os exemplos para identificar trechos que exigem cuidado. O histórico da sessão pode conter questões digitadas pelo estudante. Verificação Uma resposta automática pode parecer convincente mesmo quando o texto recuperado não declara a informação apresentada. Se a evidência for vaga ou ambígua, abra o material de origem e peça uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e",
+          "score": 0.749019980430603
+        },
+        {
+          "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:4",
+          "filename": "pratica-de-rag.pdf",
+          "page": 2,
+          "position": 4,
+          "text": "houver, para localizar a evidência. É possível apresentar uma fonte existente que trata do mesmo assunto sem sustentar a conclusão. Limites Uma resposta deve indicar insuficiência de evidência se a passagem não contiver os dados necessários. Esse cuidado também se aplica quando a pergunta parece relevante para o documento ou quando a pontuação da busca é muito parecida com a de outras consultas. Encontrar o trecho e verificar se ele sustenta a afirmação são duas etapas da leitura. Lumifólio / Material didático de demonstração 2 / 2",
+          "score": 0.7450694441795349
+        },
+        {
+          "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:3",
+          "filename": "pratica-de-rag.pdf",
+          "page": 2,
+          "position": 3,
+          "text": "PRÁTICA DE RAG Resposta fundamentada Da recuperação à confirmação da fonte Contexto A etapa de recuperação seleciona passagens candidatas antes da geração. O sistema pode atribuir um identificador temporário a cada passagem e inserir a lista no prompt, junto com a pergunta. O modelo recebe instruções para fundamentar sua explicação nessas passagens. Conferência Para conferir uma citação, abra o trecho indicado e compare a afirmação com a passagem original. Use o nome do arquivo e o número de página, se houver, para localizar a evidência. É possível apresentar uma fonte existente que trata do mesmo assunto sem sustentar a conclusão.",
+          "score": 0.7450217008590698
+        }
+      ],
+      "generation_order": [
+        "rag",
+        "baseline"
+      ],
+      "rag": {
+        "elapsed_ms": 2460.47,
+        "output": {
+          "status": "insufficient",
+          "answer": "Não encontrei nos documentos evidências suficientes para responder a essa pergunta.",
+          "citations": [],
+          "hits": [
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 3,
+              "text": "uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e confira possíveis diferenças entre o título e o nome do arquivo.",
+              "score": 0.7531211376190186
+            },
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 2,
+              "text": "dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido retirados. Antes de compartilhar as respostas, confira as referências e leia os exemplos para identificar trechos que exigem cuidado. O histórico da sessão pode conter questões digitadas pelo estudante. Verificação Uma resposta automática pode parecer convincente mesmo quando o texto recuperado não declara a informação apresentada. Se a evidência for vaga ou ambígua, abra o material de origem e peça uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e",
+              "score": 0.749019980430603
+            },
+            {
+              "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:4",
+              "filename": "pratica-de-rag.pdf",
+              "page": 2,
+              "position": 4,
+              "text": "houver, para localizar a evidência. É possível apresentar uma fonte existente que trata do mesmo assunto sem sustentar a conclusão. Limites Uma resposta deve indicar insuficiência de evidência se a passagem não contiver os dados necessários. Esse cuidado também se aplica quando a pergunta parece relevante para o documento ou quando a pontuação da busca é muito parecida com a de outras consultas. Encontrar o trecho e verificar se ele sustenta a afirmação são duas etapas da leitura. Lumifólio / Material didático de demonstração 2 / 2",
+              "score": 0.7450694441795349
+            },
+            {
+              "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:3",
+              "filename": "pratica-de-rag.pdf",
+              "page": 2,
+              "position": 3,
+              "text": "PRÁTICA DE RAG Resposta fundamentada Da recuperação à confirmação da fonte Contexto A etapa de recuperação seleciona passagens candidatas antes da geração. O sistema pode atribuir um identificador temporário a cada passagem e inserir a lista no prompt, junto com a pergunta. O modelo recebe instruções para fundamentar sua explicação nessas passagens. Conferência Para conferir uma citação, abra o trecho indicado e compare a afirmação com a passagem original. Use o nome do arquivo e o número de página, se houver, para localizar a evidência. É possível apresentar uma fonte existente que trata do mesmo assunto sem sustentar a conclusão.",
+              "score": 0.7450217008590698
+            }
+          ],
+          "submitted_ids": [
+            "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:3"
+          ],
+          "model": "qwen2.5:3b",
+          "mode": "few-shot"
+        },
+        "refused_without_citations": true
+      },
+      "baseline": {
+        "elapsed_ms": 4890.32,
+        "output": "O primeiro imperador romano foi Cesare Augusto, que se tornou imperador após a morte de Dom Pedro I em 14 de setembro de 30 a.C. Augusto é considerado o fundador do Império Romano do Nilo."
+      }
+    },
+    {
+      "id": "Q12",
+      "category": "far_unanswerable",
+      "question": "Em que estrutura celular ocorre a fotossíntese nas folhas?",
+      "expected_answer": "Não há evidência no acervo sobre estruturas celulares ou fotossíntese.",
+      "gold_evidence": [],
+      "required_concepts": [],
+      "search_ms": 31.62,
+      "best_candidate_similarity": 0.791031539440155,
+      "retrieved": [
+        {
+          "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:4",
+          "filename": "pratica-de-rag.pdf",
+          "page": 2,
+          "position": 4,
+          "text": "houver, para localizar a evidência. É possível apresentar uma fonte existente que trata do mesmo assunto sem sustentar a conclusão. Limites Uma resposta deve indicar insuficiência de evidência se a passagem não contiver os dados necessários. Esse cuidado também se aplica quando a pergunta parece relevante para o documento ou quando a pontuação da busca é muito parecida com a de outras consultas. Encontrar o trecho e verificar se ele sustenta a afirmação são duas etapas da leitura. Lumifólio / Material didático de demonstração 2 / 2",
+          "score": 0.791031539440155
+        },
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 1,
+          "text": "Guia do laboratório fictício de recuperação semântica Entrega da prática O código que identifica a entrega do laboratório fictício é VETOR-17. Anote esse código no campo de identificação do exercício para vincular os resultados à mesma rodada. A atividade usa uma coleção pequena de anotações didáticas e registra a pergunta junto com o trecho recuperado. Os identificadores e procedimentos deste guia pertencem apenas ao cenário fictício da demonstração. Conferência experimental Antes de alterar o índice, salve a versão das anotações que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui",
+          "score": 0.7802700996398926
+        },
+        {
+          "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+          "filename": "cuidados-com-fontes.txt",
+          "page": null,
+          "position": 2,
+          "text": "dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido retirados. Antes de compartilhar as respostas, confira as referências e leia os exemplos para identificar trechos que exigem cuidado. O histórico da sessão pode conter questões digitadas pelo estudante. Verificação Uma resposta automática pode parecer convincente mesmo quando o texto recuperado não declara a informação apresentada. Se a evidência for vaga ou ambígua, abra o material de origem e peça uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e",
+          "score": 0.778131902217865
+        },
+        {
+          "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+          "filename": "guia-do-laboratorio.txt",
+          "page": null,
+          "position": 2,
+          "text": "que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui a pergunta original, o nome do documento consultado e um comentário da pessoa que conferiu a evidência. Cada revisão deve acontecer antes de combinar observações de diferentes rodadas. Entrega da análise Cada equipe registra três hipóteses de erro na seção de análise do laboratório. Uma hipótese é uma explicação plausível para o comportamento do sistema, a ser apoiada por exemplos observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou",
+          "score": 0.7777118682861328
+        }
+      ],
+      "generation_order": [
+        "baseline",
+        "rag"
+      ],
+      "baseline": {
+        "elapsed_ms": 3557.68,
+        "output": "A fotossíntese ocorre principalmente na membrana das folhas, especificamente nas chamadas cloroplastos, que são estruturas celulares responsáveis pela realização desta função."
+      },
+      "rag": {
+        "elapsed_ms": 8030.91,
+        "output": {
+          "status": "insufficient",
+          "answer": "Não encontrei nos documentos evidências suficientes para responder a essa pergunta.",
+          "citations": [],
+          "hits": [
+            {
+              "id": "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:4",
+              "filename": "pratica-de-rag.pdf",
+              "page": 2,
+              "position": 4,
+              "text": "houver, para localizar a evidência. É possível apresentar uma fonte existente que trata do mesmo assunto sem sustentar a conclusão. Limites Uma resposta deve indicar insuficiência de evidência se a passagem não contiver os dados necessários. Esse cuidado também se aplica quando a pergunta parece relevante para o documento ou quando a pontuação da busca é muito parecida com a de outras consultas. Encontrar o trecho e verificar se ele sustenta a afirmação são duas etapas da leitura. Lumifólio / Material didático de demonstração 2 / 2",
+              "score": 0.791031539440155
+            },
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 1,
+              "text": "Guia do laboratório fictício de recuperação semântica Entrega da prática O código que identifica a entrega do laboratório fictício é VETOR-17. Anote esse código no campo de identificação do exercício para vincular os resultados à mesma rodada. A atividade usa uma coleção pequena de anotações didáticas e registra a pergunta junto com o trecho recuperado. Os identificadores e procedimentos deste guia pertencem apenas ao cenário fictício da demonstração. Conferência experimental Antes de alterar o índice, salve a versão das anotações que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui",
+              "score": 0.7802700996398926
+            },
+            {
+              "id": "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+              "filename": "cuidados-com-fontes.txt",
+              "page": null,
+              "position": 2,
+              "text": "dados privados de colegas, deixe-o fora da base até que sua utilização esteja autorizada e os dados desnecessários tenham sido retirados. Antes de compartilhar as respostas, confira as referências e leia os exemplos para identificar trechos que exigem cuidado. O histórico da sessão pode conter questões digitadas pelo estudante. Verificação Uma resposta automática pode parecer convincente mesmo quando o texto recuperado não declara a informação apresentada. Se a evidência for vaga ou ambígua, abra o material de origem e peça uma explicação adicional na próxima aula. Nos exemplos de apresentação, cite a página sempre que o documento oferecer paginação e",
+              "score": 0.778131902217865
+            },
+            {
+              "id": "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2",
+              "filename": "guia-do-laboratorio.txt",
+              "page": null,
+              "position": 2,
+              "text": "que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui a pergunta original, o nome do documento consultado e um comentário da pessoa que conferiu a evidência. Cada revisão deve acontecer antes de combinar observações de diferentes rodadas. Entrega da análise Cada equipe registra três hipóteses de erro na seção de análise do laboratório. Uma hipótese é uma explicação plausível para o comportamento do sistema, a ser apoiada por exemplos observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou",
+              "score": 0.7777118682861328
+            }
+          ],
+          "submitted_ids": [
+            "89e196a0f8a579a57ae52092b8ecb64a728a02aff56589e1f4547708e9d48da7:4",
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:1",
+            "3f215893985eb912398eb6df7f49598b17f40fc4a502fe4ad6a458b1897bbd59:2",
+            "8280625710314da44d10e46d6e68992bf5ae477cca82cd5305f2f1973907f570:2"
+          ],
+          "model": "qwen2.5:3b",
+          "mode": "few-shot"
+        },
+        "refused_without_citations": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+[
+  {
+    "id": "Q01",
+    "category": "answerable",
+    "question": "Qual código identifica a entrega do laboratório fictício?",
+    "expected_answer": "O código da entrega é VETOR-17.",
+    "gold_evidence": [
+      {"filename": "guia-do-laboratorio.txt", "page": null, "anchor": "é VETOR-17"}
+    ],
+    "required_concepts": [
+      {"label": "Código exato da entrega", "any_of": ["VETOR-17"]}
+    ]
+  },
+  {
+    "id": "Q02",
+    "category": "answerable",
+    "question": "Por que o exercício mantém palavras em comum entre trechos consecutivos?",
+    "expected_answer": "A sobreposição preserva o contexto na fronteira entre trechos, diminuindo a perda de continuidade.",
+    "gold_evidence": [
+      {"filename": "pratica-de-rag.pdf", "page": 1, "anchor": "preservar o contexto na fronteira entre eles"},
+      {"filename": "pratica-de-rag.pdf", "page": 1, "anchor": "perder sua continuação no próximo"}
+    ],
+    "required_concepts": [
+      {"label": "Continuidade do contexto", "any_of": ["contexto", "continuidade", "continuação", "definição"]},
+      {"label": "Preservação nas fronteiras", "any_of": ["preserv", "mant", "perda", "perder", "continuidade"]}
+    ]
+  },
+  {
+    "id": "Q03",
+    "category": "answerable",
+    "question": "Como conferir no material de prática se uma citação sustenta a afirmação?",
+    "expected_answer": "Abra o trecho indicado e compare a afirmação com a passagem original.",
+    "gold_evidence": [
+      {"filename": "pratica-de-rag.pdf", "page": 2, "anchor": "compare a afirmação com a passagem original"}
+    ],
+    "required_concepts": [
+      {"label": "Conferência da evidência", "any_of": ["compar", "verific", "confir"]},
+      {"label": "Passagem de origem", "any_of": ["passagem", "trecho", "original"]}
+    ]
+  },
+  {
+    "id": "Q04",
+    "category": "answerable",
+    "question": "Que assunto o caderno usa para exemplificar a recuperação de uma paráfrase sobre consertar um carro?",
+    "expected_answer": "Manutenção de automóveis, equivalente à pergunta sobre reparar um veículo.",
+    "gold_evidence": [
+      {"filename": "pln-e-embeddings.pdf", "page": 1, "anchor": "texto sobre manutenção de automóveis"}
+    ],
+    "required_concepts": [
+      {"label": "Manutenção ou reparo", "any_of": ["manutenção", "repar", "consert"]},
+      {"label": "Automóveis", "any_of": ["automóve", "automóvel", "veículo", "carro"]}
+    ]
+  },
+  {
+    "id": "Q05",
+    "category": "answerable",
+    "question": "Na medida de cosseno, importa a orientação dos vetores ou o comprimento de cada um?",
+    "expected_answer": "A medida compara a direção ou o ângulo entre os vetores e independe do comprimento de cada vetor.",
+    "gold_evidence": [
+      {"filename": "pln-e-embeddings.pdf", "page": 2, "anchor": "compara a direção dos vetores pelo ângulo"},
+      {"filename": "pln-e-embeddings.pdf", "page": 2, "anchor": "não depende do comprimento de cada vetor"}
+    ],
+    "required_concepts": [
+      {"label": "Direção ou ângulo", "any_of": ["orientação", "ângulo", "direção"]},
+      {"label": "Independência de magnitude", "any_of": ["não depende", "independe", "sem considerar", "sem depender", "não se importa", "não considera", "não o comprimento", "não do comprimento", "não do tamanho", "não a magnitude", "não da magnitude"]}
+    ]
+  },
+  {
+    "id": "Q06",
+    "category": "answerable",
+    "question": "Qual ficha registra a revisão que uma segunda pessoa faz no laboratório fictício?",
+    "expected_answer": "A revisão por uma segunda pessoa é registrada na ficha Mira Azul.",
+    "gold_evidence": [
+      {"filename": "guia-do-laboratorio.txt", "page": null, "anchor": "A ficha Mira Azul é usada para registrar a revisão"}
+    ],
+    "required_concepts": [
+      {"label": "Nome exato da ficha", "any_of": ["Mira Azul"]}
+    ]
+  },
+  {
+    "id": "Q07",
+    "category": "answerable",
+    "question": "Quantas hipóteses de erro cada equipe deve registrar na análise do laboratório fictício?",
+    "expected_answer": "Cada equipe deve registrar três hipóteses de erro.",
+    "gold_evidence": [
+      {"filename": "guia-do-laboratorio.txt", "page": null, "anchor": "registra três hipóteses de erro"}
+    ],
+    "required_concepts": [
+      {"label": "Quantidade de hipóteses", "any_of": ["três", "3"]}
+    ]
+  },
+  {
+    "id": "Q08",
+    "category": "answerable",
+    "question": "O que devo verificar antes de importar um material de terceiros no assistente?",
+    "expected_answer": "Verifique se existe autorização para usar o material.",
+    "gold_evidence": [
+      {"filename": "cuidados-com-fontes.txt", "page": null, "anchor": "confira se existe autorização para utilizá-lo"}
+    ],
+    "required_concepts": [
+      {"label": "Autorização de uso", "any_of": ["autoriza", "permissão", "consentimento"]}
+    ]
+  },
+  {
+    "id": "Q09",
+    "category": "near_unanswerable",
+    "question": "Qual é o prazo de entrega do laboratório fictício?",
+    "expected_answer": "O acervo não informa uma data ou prazo de entrega.",
+    "gold_evidence": [],
+    "required_concepts": []
+  },
+  {
+    "id": "Q10",
+    "category": "near_unanswerable",
+    "question": "Quantas dimensões têm os vetores usados pelo laboratório fictício?",
+    "expected_answer": "O acervo não informa a dimensionalidade dos vetores do exercício.",
+    "gold_evidence": [],
+    "required_concepts": []
+  },
+  {
+    "id": "Q11",
+    "category": "far_unanswerable",
+    "question": "Quem foi o primeiro imperador romano?",
+    "expected_answer": "Não há evidência no acervo sobre a história do Império Romano.",
+    "gold_evidence": [],
+    "required_concepts": []
+  },
+  {
+    "id": "Q12",
+    "category": "far_unanswerable",
+    "question": "Em que estrutura celular ocorre a fotossíntese nas folhas?",
+    "expected_answer": "Não há evidência no acervo sobre estruturas celulares ou fotossíntese.",
+    "gold_evidence": [],
+    "required_concepts": []
+  }
+]

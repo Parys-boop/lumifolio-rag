@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Lumifólio · Assistente de estudos</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Ir para a conversa</a>
+  <header class="topbar">
+    <div class="brand"><span class="mark" aria-hidden="true"></span><span>Lumifólio</span></div>
+    <div class="top-actions">
+      <button class="soft-button mobile-library" id="library-toggle" type="button" aria-controls="library" aria-expanded="false">Documentos</button>
+      <div class="model-status" id="model-status" title="Disponibilidade do modelo de linguagem"><span class="status-dot"></span><span id="model-label">Verificando modelo…</span></div>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="library" id="library" aria-labelledby="library-title">
+      <div class="section-heading"><h2 id="library-title">Biblioteca</h2><span id="document-count" class="count">0</span></div>
+      <p class="muted library-copy">Adicione os materiais que serão consultados durante o estudo.</p>
+      <div class="upload-box">
+        <span class="upload-icon" aria-hidden="true">↑</span>
+        <div><strong>Importar materiais</strong><small>PDF ou TXT · até 12 MB por arquivo</small></div>
+        <input id="files" type="file" accept=".pdf,.txt" multiple hidden>
+        <button class="primary-button" id="choose-files" type="button">Escolher arquivos</button>
+      </div>
+      <button class="soft-button example-button" id="load-examples" type="button">Carregar materiais de exemplo <span aria-hidden="true">↗</span></button>
+      <h3 class="list-title">Seus documentos</h3>
+      <div id="document-list"><p class="empty-library">Sua biblioteca está vazia.</p></div>
+      <details class="settings">
+        <summary>Configurações da resposta</summary>
+        <label for="prompt-mode">Técnica de prompting</label>
+        <select id="prompt-mode">
+          <option value="few-shot">Few-shot · com exemplos</option>
+          <option value="zero-shot">Zero-shot · sem exemplos</option>
+        </select>
+      </details>
+      <p class="privacy"><span class="privacy-icon" aria-hidden="true"></span> Os documentos e as respostas são processados neste computador.</p>
+    </aside>
+    <main id="main">
+      <div class="workspace">
+        <div class="conversation-header">
+          <div><h2>Conversa</h2><p id="conversation-subtitle">Respostas verificáveis com seus materiais.</p></div>
+          <button class="soft-button clear-button" id="clear-chat" type="button" disabled>Nova conversa</button>
+        </div>
+        <div id="notice" class="notice" role="status" hidden></div>
+        <div id="welcome">
+          <section class="welcome-card" aria-labelledby="welcome-title">
+            <div>
+              <h1 id="welcome-title">Estude com suas fontes.</h1>
+              <p>Importe materiais da disciplina e faça perguntas. Acompanhe os trechos que sustentam cada resposta.</p>
+              <a href="#library" id="library-link">Abrir biblioteca <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <i class="art-sheet back-sheet"></i>
+              <i class="art-sheet front-sheet"><i></i><i></i><i></i></i>
+              <i class="art-quote">“</i>
+            </div>
+          </section>
+          <section class="suggestions" aria-labelledby="suggestion-title">
+            <div class="section-heading"><h2 id="suggestion-title">Experimente perguntar</h2></div>
+            <p class="muted">Sugestões para os materiais de exemplo.</p>
+            <div class="suggestion-grid">
+              <button type="button" class="suggestion" data-question="Qual código identifica a entrega do laboratório fictício?"><strong>Identificar uma informação</strong><span>Qual código identifica a entrega do laboratório fictício?</span><span class="suggestion-arrow" aria-hidden="true">↗</span></button>
+              <button type="button" class="suggestion" data-question="Por que o exercício mantém palavras em comum entre trechos consecutivos?"><strong>Entender um conceito</strong><span>Por que o exercício mantém palavras em comum entre trechos consecutivos?</span><span class="suggestion-arrow" aria-hidden="true">↗</span></button>
+              <button type="button" class="suggestion" data-question="Qual é o prazo de entrega do laboratório fictício?"><strong>Verificar os limites da base</strong><span>Qual é o prazo de entrega do laboratório fictício?</span><span class="suggestion-arrow" aria-hidden="true">↗</span></button>
+            </div>
+          </section>
+        </div>
+        <section id="chat" aria-label="Histórico da conversa" aria-live="polite" hidden></section>
+        <div class="processing" id="processing" role="status" hidden><span class="spinner" aria-hidden="true"></span><span>Buscando trechos e verificando a resposta…</span></div>
+        <div class="composer-area">
+          <form id="ask-form" class="composer">
+            <label class="sr-only" for="question">Sua pergunta</label>
+            <textarea id="question" placeholder="Pergunte sobre seus documentos…" maxlength="600" rows="2" required></textarea>
+            <button class="primary-button send-button" id="send-question" type="submit">Enviar <span aria-hidden="true">↑</span></button>
+          </form>
+          <p class="composer-note" id="composer-note">Adicione materiais à biblioteca para começar.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.pdf binary
+*.png binary
+*.webm binary
+# Preserve the corpus and the teacher's handout byte for byte.
+examples/*.txt -text whitespace=cr-at-eol,-blank-at-eof
+docs/academic/GUIA-DA-ATIVIDADE.html -text

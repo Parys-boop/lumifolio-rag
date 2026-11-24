@@ -1,0 +1,11 @@
+Guia do laboratório fictício de recuperação semântica
+
+Entrega da prática
+O código que identifica a entrega do laboratório fictício é VETOR-17. Anote esse código no campo de identificação do exercício para vincular os resultados à mesma rodada. A atividade usa uma coleção pequena de anotações didáticas e registra a pergunta junto com o trecho recuperado. Os identificadores e procedimentos deste guia pertencem apenas ao cenário fictício da demonstração.
+
+Conferência experimental
+Antes de alterar o índice, salve a versão das anotações que está usando. A ficha Mira Azul é usada para registrar a revisão por uma segunda pessoa. A ficha inclui a pergunta original, o nome do documento consultado e um comentário da pessoa que conferiu a evidência. Cada revisão deve acontecer antes de combinar observações de diferentes rodadas.
+
+Entrega da análise
+Cada equipe registra três hipóteses de erro na seção de análise do laboratório. Uma hipótese é uma explicação plausível para o comportamento do sistema, a ser apoiada por exemplos observados. Evidências podem incluir uma passagem recuperada, o enunciado de uma pergunta e anotações sobre o que o resultado deixou sem cobertura. A equipe compara os exemplos lado a lado antes de registrar a conclusão.
+
